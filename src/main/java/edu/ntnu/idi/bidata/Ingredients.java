@@ -1,4 +1,9 @@
 package main.edu.ntnu.idi.bidata;
+//import java.util.Date;
+import java.time.LocalDate;
+
+
+
 
 public class Ingredients {
     private String ingredientName;
@@ -98,10 +103,23 @@ public class Ingredients {
         System.out.println("Is Expired: " + getIngredientIsExpired());
     }
 
+
 public static void main(String[] args) {
     // Create an ingredient
     Ingredients bellPepper = new Ingredients("Bell Pepper", "Vegetable", 19, 5, "12", false);
 
+    LocalDate currentDate = LocalDate.now(); //https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html#now()
+    LocalDate expiryDate = LocalDate.of(2024,10,12);
+    System.out.println(currentDate);
+    System.out.println(expiryDate);
+
+    if(expiryDate.equals(currentDate)){
+        System.out.println("The ingredient is expiring today.");
+        bellPepper.setIngredientIsExpired(true);
+    }
+    else if(expiryDate.isBefore(currentDate)){
+        System.out.println("The ingredient is expired.");
+    }
 
     // Display information
     bellPepper.displayInformation();
