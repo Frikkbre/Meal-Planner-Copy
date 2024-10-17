@@ -102,6 +102,7 @@ public static void main(String[] args) {
     // Create an ingredient
     Ingredients bellPepper = new Ingredients("Bell Pepper", "Vegetable", 19, 5, "12", false);
 
+
     // Display information
     bellPepper.displayInformation();
 }
