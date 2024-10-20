@@ -43,26 +43,48 @@ public class Ingredient {
 
 
     /**
-     * Takes input from user or constructor and gives it to field
      * @param ingredientName
+     * Takes input from user or constructor and gives it to field
      */
     public void setIngredientName(String ingredientName) {
+        if(ingredientName.isBlank() || ingredientName.isBlank()){
+            throw new IllegalArgumentException("Ingredient name cannot be empty");
+        }
         this.ingredientName = ingredientName;
     }
 
     public void setIngredientType(String ingredientType) {
+        if(ingredientType.isBlank() || ingredientType.isBlank()){
+            throw new IllegalArgumentException("Ingredient type cannot be empty");
+        }
         this.ingredientType = ingredientType;
     }
 
     public void setIngredientPrice(float ingredientPrice) {
+        if(ingredientPrice < 0){
+            throw new IllegalArgumentException("Ingredient price cannot be negative");
+        }
         this.ingredientPrice = ingredientPrice;
     }
 
     public void setIngredientAmount(int ingredientAmount) {
+        if(ingredientAmount < 0){
+            throw new IllegalArgumentException("Ingredient amount cannot be negative");
+        }
         this.ingredientAmount = ingredientAmount;
     }
 
+    public void setIngredientUnit(String ingredientUnit) {
+        if(ingredientUnit.isBlank() || ingredientUnit.isBlank()){
+            throw new IllegalArgumentException("Ingredient unit cannot be empty");
+        }
+        this.ingredientUnit = ingredientUnit;
+    }
+
     public void setIngredientExpirationDate(int ingredientExpirationDateYear, int ingredientExpirationDateMonth, int ingredientExpirationDateDay) {
+        if(ingredientExpirationDateYear < 0 || ingredientExpirationDateYear > 2099 || ingredientExpirationDateMonth < 0 ||ingredientExpirationDateMonth > 12 || ingredientExpirationDateDay < 0 || ingredientExpirationDateDay > 31){
+            throw new IllegalArgumentException("Date format did not reach requirements, see documentation");
+        }
         this.ingredientExpirationDate = LocalDate.of(ingredientExpirationDateYear, ingredientExpirationDateMonth, ingredientExpirationDateDay);
     }
 
@@ -95,6 +117,10 @@ public class Ingredient {
         return ingredientAmount;
     }
 
+    public String getIngredientUnit() {
+        return ingredientUnit;
+    }
+
     public LocalDate getIngredientExpirationDate() {
         return ingredientExpirationDate;
     }
@@ -114,11 +140,12 @@ public class Ingredient {
      * @param ingredientExpirationDateMonth
      * @param ingredientExpirationDateDay
      */
-    public Ingredient(String ingredientName, String ingredientType, float ingredientPrice, int ingredientAmount, int ingredientExpirationDateYear, int ingredientExpirationDateMonth, int ingredientExpirationDateDay) {
+    public Ingredient(String ingredientName, String ingredientType, float ingredientPrice, int ingredientAmount, String ingredientUnit, int ingredientExpirationDateYear, int ingredientExpirationDateMonth, int ingredientExpirationDateDay) {
         setIngredientName(ingredientName);
         setIngredientType(ingredientType);
         setIngredientPrice(ingredientPrice);
         setIngredientAmount(ingredientAmount);
+        setIngredientUnit(ingredientUnit);
         setIngredientExpirationDate(ingredientExpirationDateYear, ingredientExpirationDateMonth, ingredientExpirationDateDay);
     }
 
@@ -127,6 +154,7 @@ public class Ingredient {
         System.out.println("Type: " + getIngredientType());
         System.out.println("Price: " + getIngredientPrice() + "kr");
         System.out.println("Amount: " + getIngredientAmount());
+        System.out.println("Unit: " + getIngredientUnit());
         //System.out.println("Expiration Date in: " + (getIngredientExpirationDate()-LocalDate.now())); Add "how many days until expiry?"
         System.out.println("Is Expired: " + getIngredientIsExpired());
     }
@@ -134,7 +162,7 @@ public class Ingredient {
 
 public static void main(String[] args) {
     // Create an ingredient
-    main.edu.ntnu.idi.bidata.Ingredient bellPepper = new main.edu.ntnu.idi.bidata.Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 2024, 10, 19);
+    main.edu.ntnu.idi.bidata.Ingredient bellPepper = new main.edu.ntnu.idi.bidata.Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, "pieces", 2024, 10, 19);
 
     LocalDate currentDate = LocalDate.now(); //https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html#now()
     LocalDate expiryDate = LocalDate.of(2024,10,12);
