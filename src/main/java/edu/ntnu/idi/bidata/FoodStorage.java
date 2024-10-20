@@ -7,4 +7,7 @@ public class FoodStorage {
      *
      * take userinput here? add food and such.
      */
+    public static void main(String[]args){
+        System.out.println("Hello World!");
+    }
 }
