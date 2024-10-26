@@ -6,9 +6,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IngredientTest {
 
-    @org.junit.jupiter.api.Test
-    void setIngredientName() {
+    static main.edu.ntnu.idi.bidata.Ingredient ingredientTest;
+    
+    @Test
+    void setIngredientNameTestForPositiveValues() {
+        ingredientTest.setIngredientName("Flour");
+
+            //Assert
+        assertEquals("Flour", ingredientTest.getIngredientName());
+
     }
+
+
+    void setIngredientNameTestForNegativeValues() {
+        ingredientTest.setIngredientName("");
+
+        //Assert
+        assertEquals(IllegalArgumentException("Ingredient name cannot be empty"), ingredientTest.getIngredientName());
+
+    }
+
 
     @org.junit.jupiter.api.Test
     void setIngredientExpirationDate() {
@@ -47,6 +64,6 @@ class IngredientTest {
     }
 
     @Test
-    void displayInformation() {
+    void displayInformation() { //TODO - sjekk om denne trenger testmetode.
     }
 }
