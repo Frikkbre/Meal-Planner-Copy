@@ -1,37 +1,55 @@
 package edu.ntnu.idi.bidata;
+import main.edu.ntnu.idi.bidata.Ingredient;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class IngredientTest {
 
-    static main.edu.ntnu.idi.bidata.Ingredient ingredientTest;
+    private Ingredient ingredient;
+    
+    @BeforeEach
+    void setUp(){
+        String Name = "Flour";
+        String Type = "Baking";
+        float Price = 10.0f;
+        float Amount = 5.0f;
+        String Unit = "kg";
+        int ExpirationYear = 2024;
+        int ExpirationMonth = 10;
+        int ExpirationDay = 19;
+        LocalDate ExpirationDate = LocalDate.of(ExpirationYear, ExpirationMonth, ExpirationDay);
+        boolean IsExpired = true;
+        ingredient = new Ingredient(Name, Type, Price, (int) Amount, Unit, ExpirationYear, ExpirationMonth, ExpirationDay);  //TODO - check required (int) before amount.
+    }
+    
     
     @Test
     void setIngredientNameTestForPositiveValues() {
-        ingredientTest.setIngredientName("Flour");
-
-            //Assert
-        assertEquals("Flour", ingredientTest.getIngredientName());
+        String ingredientName = "Flour";
+        ingredient.setIngredientName(ingredientName);
+        assertEquals(ingredientName, ingredient.getIngredientName());
 
     }
 
-
+    @Test
     void setIngredientNameTestForNegativeValues() {
-        ingredientTest.setIngredientName("");
-
         //Assert
-        assertEquals(IllegalArgumentException("Ingredient name cannot be empty"), ingredientTest.getIngredientName());
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientName(null));
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientName(""));
+
 
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setIngredientExpirationDate() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setIngredientIsExpired() {
     }
 
