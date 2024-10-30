@@ -1,8 +1,10 @@
 package main.edu.ntnu.idi.bidata;
+
 //import java.util.Date;
 import java.time.LocalDate;
 
 /**
+ *
  * HVA MÅ DOKUMENTERES?
  * Rolle/ansvar
  * • Hvilke informasjon klassen holder på og hvilke datatyper du har valgt for hver info og
@@ -15,51 +17,68 @@ import java.time.LocalDate;
 
 
 /**
- * @author Frikk Braendsrod
+ * @author Frikk Braendsroe¥d
  * @since 20.10.24
+ * @version 0.0.1
  *
- * The Ingredient class holds information about ingredients added by user and handles mutator and accessor methods.
+ *     The Ingredient class holds information about ingredients added by user and handles mutator and accessor methods.
  *
- * This class holds the fields:
- * ingredientName, Type String
- * ingredientType, Type String because it holds a text description of type.
- * ingredientPrice, Type float because it holds deciamals for price. Float is used because the prices wont be high enough to need for example double.
- * ingredientAmout, Type float because the program needs to be flexible when you use for example half the milk.
- * ingredientUnit, Type String because it holds a text description of unit used for the ingredient.
- * ingredientExpirationDate, Type LocalDate beacuse it uses the Class LacalDate
- * ingredientIsExpired, Type boolean because it need to return either true or false.
+ *     This class holds the fields:
+ *     ingredientName, Type String
+ *     ingredientType, Type String because it holds a text description of type.
+ *     ingredientPrice, Type float because it holds deciamals for price. Float is used because the prices wont be high enough to need for example double.
+ *     ingredientAmout, Type float because the program needs to be flexible when you use for example half the milk.
+ *     ingredientUnit, Type String because it holds a text description of unit used for the ingredient.
+ *     ingredientExpirationDate, Type LocalDate beacuse it uses the Class LacalDate
+ *     ingredientIsExpired, Type boolean because it need to return either true or false.
  */
 public class Ingredient {
     private String ingredientName;
     private String ingredientType;
     private float ingredientPrice;
-    private int ingredientAmount;
-    private String ingredientUnit; //Add to other methods!!
-    private int ingredientExpirationDateYear;    //Date? check javaDocs
+    private float ingredientAmount;
+    private String ingredientUnit; //Add to other methods!!   TODO - make Enum.
+    /*private int ingredientExpirationDateYear;
     private int ingredientExpirationDateMonth;
-    private int ingredientExpirationDateDay;
+    private int ingredientExpirationDateDay;*/
     private LocalDate ingredientExpirationDate;
     private boolean ingredientIsExpired;
 
+    public Ingredient() {
+
+    }
+
 
     /**
-     * @param ingredientName
-     * Takes input from user or constructor and gives it to field
+     *    Sets ingredient name and checks for illegal inputs
+     *
+     *    @param ingredientName
      */
     public void setIngredientName(String ingredientName) {
-        if(ingredientName.isBlank() || ingredientName.isBlank()){
+        if(ingredientName == null || ingredientName.isBlank() || ingredientName.isEmpty()){
             throw new IllegalArgumentException("Ingredient name cannot be empty");
         }
         this.ingredientName = ingredientName;
     }
 
+    /**
+     *    Sets ingredient type and checks for illegal inputs
+     *
+     *    @param ingredientType
+     */
+
     public void setIngredientType(String ingredientType) {
-        if(ingredientType.isBlank() || ingredientType.isBlank()){
+        if(ingredientType.isBlank() || ingredientType.isEmpty()){
             throw new IllegalArgumentException("Ingredient type cannot be empty");
         }
         this.ingredientType = ingredientType;
     }
 
+    /**
+     *    Sets ingredient price and checks for illegal inputs
+     *
+     *    @param ingredientPrice
+     */
     public void setIngredientPrice(float ingredientPrice) {
         if(ingredientPrice < 0){
             throw new IllegalArgumentException("Ingredient price cannot be negative");
@@ -67,13 +86,23 @@ public class Ingredient {
         this.ingredientPrice = ingredientPrice;
     }
 
-    public void setIngredientAmount(int ingredientAmount) {
+    /**
+     *    Sets ingredient amount and checks for illegal inputs
+     *
+     *    @param ingredientAmount
+     */
+    public void setIngredientAmount(float ingredientAmount) {
         if(ingredientAmount < 0){
             throw new IllegalArgumentException("Ingredient amount cannot be negative");
         }
         this.ingredientAmount = ingredientAmount;
     }
 
+    /**
+     *    Sets ingredient unit and checks for illegal inputs
+     *
+     *    @param ingredientUnit
+     */
     public void setIngredientUnit(String ingredientUnit) {
         if(ingredientUnit.isBlank() || ingredientUnit.isBlank()){
             throw new IllegalArgumentException("Ingredient unit cannot be empty");
@@ -81,6 +110,13 @@ public class Ingredient {
         this.ingredientUnit = ingredientUnit;
     }
 
+    /**
+     *    Sets ingredient expiration date with three inputs divided into year month and day and checks for illegal inputs
+     *
+     *    @param ingredientExpirationDateYear
+     *    @param ingredientExpirationDateMonth
+     *    @param ingredientExpirationDateDay
+     */
     public void setIngredientExpirationDate(int ingredientExpirationDateYear, int ingredientExpirationDateMonth, int ingredientExpirationDateDay) {
         if(ingredientExpirationDateYear < 0 || ingredientExpirationDateYear > 2099 || ingredientExpirationDateMonth < 0 ||ingredientExpirationDateMonth > 12 || ingredientExpirationDateDay < 0 || ingredientExpirationDateDay > 31){
             throw new IllegalArgumentException("Date format did not reach requirements, see documentation");
@@ -88,43 +124,66 @@ public class Ingredient {
         this.ingredientExpirationDate = LocalDate.of(ingredientExpirationDateYear, ingredientExpirationDateMonth, ingredientExpirationDateDay);
     }
 
+    /**
+     *    Sets ingredient is expired boolean with todays date and input date.
+     *
+     *    @param ingredientIsExpired
+     */
     public void setIngredientIsExpired(boolean ingredientIsExpired) {
-        this.ingredientIsExpired = ingredientIsExpired;
+        if(ingredientExpirationDate.isBefore(LocalDate.now()))
+            this.ingredientIsExpired = true;
+        else{
+            this.ingredientIsExpired = false;
+        }
     }
 
 
+
     /**
-     * Getters
-     * @return
+     * @return name of ingredient
      */
     public String getIngredientName() {
         return ingredientName;
     }
 
+    /**
+     * @return the type of ingredient
+     */
     public String getIngredientType() {
         return ingredientType;
     }
 
-    public boolean isIngredientIsExpired() {
-        return ingredientIsExpired;
-    }
-
+    /**
+     * @return the ingredient price
+     */
     public float getIngredientPrice() {
         return ingredientPrice;
     }
 
-    public int getIngredientAmount() {
+    /**
+     * @return the ingredient amount
+     */
+    public float getIngredientAmount() {
         return ingredientAmount;
     }
 
+    /**
+     * @return the ingredient unit
+     */
     public String getIngredientUnit() {
         return ingredientUnit;
     }
 
+    /**
+     * @return the ingredient expiration date
+     */
     public LocalDate getIngredientExpirationDate() {
         return ingredientExpirationDate;
     }
 
+    /**
+     * @return true or false based on expirqtion date
+     */
     public boolean getIngredientIsExpired() {
         return ingredientIsExpired;
     }
@@ -149,13 +208,15 @@ public class Ingredient {
         setIngredientExpirationDate(ingredientExpirationDateYear, ingredientExpirationDateMonth, ingredientExpirationDateDay);
     }
 
+    /**
+     * prints all information stored about the given object.
+     */
     public void displayInformation() {
         System.out.println("Name: " + getIngredientName());
         System.out.println("Type: " + getIngredientType());
         System.out.println("Price: " + getIngredientPrice() + "kr");
         System.out.println("Amount: " + getIngredientAmount());
         System.out.println("Unit: " + getIngredientUnit());
-        //System.out.println("Expiration Date in: " + (getIngredientExpirationDate()-LocalDate.now())); Add "how many days until expiry?"
         System.out.println("Is Expired: " + getIngredientIsExpired());
     }
 
@@ -168,18 +229,6 @@ public static void main(String[] args) {
     LocalDate expiryDate = LocalDate.of(2024,10,12);
     System.out.println(currentDate);
     System.out.println(bellPepper.ingredientExpirationDate);
-
-    if(bellPepper.ingredientExpirationDate.equals(currentDate)){
-        System.out.println("The ingredient is expiring today.");
-        bellPepper.setIngredientIsExpired(false);
-    }
-    else if(bellPepper.ingredientExpirationDate.isBefore(currentDate)){
-        System.out.println("The ingredient is expired.");
-        bellPepper.setIngredientIsExpired(true);
-    }
-    else if(bellPepper.ingredientExpirationDate.isAfter(currentDate)){
-        bellPepper.setIngredientIsExpired(false);
-    }
 
     // Display information
     bellPepper.displayInformation();
