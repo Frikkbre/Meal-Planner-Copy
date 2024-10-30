@@ -45,41 +45,93 @@ class IngredientTest {
     }
 
 
+
     @Test
-    void setIngredientExpirationDate() {
+    void SetIngredientNameTestForPositiveValues() {
+        String ingredientName = "Flour"; //TODO - Isnt this defined in setup??
+        ingredient.setIngredientName(ingredientName);
+        assertEquals(ingredientName, ingredient.getIngredientName());
     }
 
     @Test
-    void setIngredientIsExpired() {
+    void SetIngredientNameTestForNegativeValues() {
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientName(""));
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientName(null));
+    }
+
+
+
+    @Test
+    void setIngredientTypeTestForPositiveValues() {
+        String ingredientType = "Baking";
+        ingredient.setIngredientType(ingredientType);
+        assertEquals(ingredientType, ingredient.getIngredientType());
     }
 
     @Test
-    void testSetIngredientName() {
+    void setIngredientTypeTestForNegativeValues() {
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientType(""));
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientType(null));
+    }
+
+
+
+    @Test
+    void setIngredientPriceTestForPositiveValues() {
+        int ingredientPrice = 10;
+        ingredient.setIngredientPrice(ingredientPrice);
+        assertEquals(ingredientPrice, ingredient.getIngredientPrice());
     }
 
     @Test
-    void setIngredientType() {
+    void setIngredientPriceTestForNegativeValues() {
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientPrice(-10));
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientPrice(0));
+    }
+
+
+
+    @Test
+    void setIngredientAmountTestForPositiveValues() {
+        int ingredientAmount = 5;
+        ingredient.setIngredientAmount(ingredientAmount);
+        assertEquals(ingredientAmount, ingredient.getIngredientAmount());
     }
 
     @Test
-    void setIngredientPrice() {
+    void setIngredientAmountTestForNegativeValues() {
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientAmount(-5));
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientAmount(0));
+    }
+
+
+
+    @Test
+    void setIngredientUnitTestForPositiveValues() {
+        String ingredientUnit = "kg";
+        ingredient.setIngredientUnit(ingredientUnit);
+        assertEquals(ingredientUnit, ingredient.getIngredientUnit());
     }
 
     @Test
-    void setIngredientAmount() {
+    void setIngredientUnitTestForNegativeValues() {
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientUnit(""));
+        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientUnit(null));
     }
 
-    @Test
-    void setIngredientUnit() {
-    }
+
 
     @Test
-    void testSetIngredientExpirationDate() {
+    void SetIngredientExpirationDate() { //TODO - do.
     }
 
+
+
     @Test
-    void testSetIngredientIsExpired() {
+    void SetIngredientIsExpired() { //TODO - sjekk om denne trenger testmetode.
     }
+
+
 
     @Test
     void displayInformation() { //TODO - sjekk om denne trenger testmetode.
