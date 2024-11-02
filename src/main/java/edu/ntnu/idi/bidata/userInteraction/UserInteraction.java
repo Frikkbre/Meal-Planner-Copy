@@ -1,6 +1,6 @@
 package edu.ntnu.idi.bidata.userInteraction;
 
-
+import main.edu.ntnu.idi.bidata.Ingredient;
 import java.util.Scanner;
 
 public class UserInteraction {
@@ -18,8 +18,9 @@ public class UserInteraction {
 
         Scanner inputScanner = new Scanner(System.in);
 
-        System.out.println("How many ingredients do you want to add?");
+        System.out.println("How many different ingredients do you want to add?");
         int howManyIngredients = inputScanner.nextInt();
+        inputScanner.nextLine();
 
         for (int indexOfInput = 0; indexOfInput < howManyIngredients; indexOfInput++){
 
@@ -30,24 +31,30 @@ public class UserInteraction {
             String ingredientType = inputScanner.nextLine();
 
             System.out.println("What does the ingredient cost?");
-            float ingredientPrice = inputScanner.nextInt();
+            float ingredientPrice = inputScanner.nextFloat();
+            inputScanner.nextLine();
 
             System.out.println("How many/much do you have?");
             float ingredientAmount = inputScanner.nextFloat();
+            inputScanner.nextLine();
 
             System.out.println("What unit is it?");
             String ingredientUnit = inputScanner.nextLine();
 
             System.out.println("What year does it expire? (xxxx)");
             int ingredientExpirationYear = inputScanner.nextInt();
+            inputScanner.nextLine();
 
             System.out.println("What month does it expire= (xx)");
             int ingredientExpirationMonth = inputScanner.nextInt();
+            inputScanner.nextLine();
 
             System.out.println("What day does it expire? (xx)");
             int ingredientExpirationDay = inputScanner.nextInt();
+            inputScanner.nextLine();
 
-            main.edu.ntnu.idi.bidata.Ingredient ingredient = new main.edu.ntnu.idi.bidata.Ingredient(ingredientName, ingredientType, ingredientPrice, (int) ingredientAmount, ingredientUnit, ingredientExpirationYear, ingredientExpirationMonth, ingredientExpirationDay);
+            Ingredient ingredient = new Ingredient(ingredientName, ingredientType, ingredientPrice, (int) ingredientAmount, ingredientUnit, ingredientExpirationYear, ingredientExpirationMonth, ingredientExpirationDay);
+            ingredient.displayInformation();
         }
     }
 }
