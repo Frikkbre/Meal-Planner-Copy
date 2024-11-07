@@ -38,7 +38,7 @@ public class UserInteraction {
             float ingredientAmount = inputScanner.nextFloat();
             inputScanner.nextLine();
 
-            System.out.println("What unit is it?");
+            System.out.println("What unit is it?, 1 = kg, 2 = g, 3 = liter, 4 = pieces");
             int ingredientUnitChoice = inputScanner.nextInt();
 
             System.out.println("What year does it expire? (xxxx)");
