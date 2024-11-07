@@ -39,7 +39,7 @@ public class UserInteraction {
             inputScanner.nextLine();
 
             System.out.println("What unit is it?");
-            String ingredientUnit = inputScanner.nextLine();
+            int ingredientUnitChoice = inputScanner.nextInt();
 
             System.out.println("What year does it expire? (xxxx)");
             int ingredientExpirationYear = inputScanner.nextInt();
@@ -53,7 +53,7 @@ public class UserInteraction {
             int ingredientExpirationDay = inputScanner.nextInt();
             inputScanner.nextLine();
 
-            Ingredient ingredient = new Ingredient(ingredientName, ingredientType, ingredientPrice, (int) ingredientAmount, ingredientUnit, ingredientExpirationYear, ingredientExpirationMonth, ingredientExpirationDay);
+            Ingredient ingredient = new Ingredient(ingredientName, ingredientType, ingredientPrice, (int) ingredientAmount, ingredientUnitChoice, ingredientExpirationYear, ingredientExpirationMonth, ingredientExpirationDay);
             ingredient.displayInformation();
         }
     }
