@@ -1,13 +1,12 @@
 package edu.ntnu.idi.bidata.userInteraction;
 
-import edu.ntnu.idi.bidata.FoodStorage;
-import edu.ntnu.idi.bidata.utility.Ingredient;
+import edu.ntnu.idi.bidata.entity.Ingredient;
 import java.util.Scanner;
 
 /**
  *
  */
-public class UserInteraction {
+public class MealPlannerApp {
     /**
      * Should have fields like HashMap(key = ingredient, value = amount) used for recipes.
      * other fields like
@@ -15,14 +14,10 @@ public class UserInteraction {
      * take userinput here? add food and such. yes
      */
 
-
-
-
-    public static void main(String[]args){  //TODO - Can this psvm be moved to method?
-
+    public static void startApplication(){
         Scanner inputScanner = new Scanner(System.in);
 
-        System.out.println("What dou you want to do?");
+        System.out.println("What do you want to do?");
         System.out.println("1 = Add ingredient");
         System.out.println("2 = remove ingredient");
         System.out.println("3 = search ingredient");
@@ -75,8 +70,8 @@ public class UserInteraction {
                 }
                 break;
             case 2:
-                FoodStorage foodStorage = new FoodStorage();
-                foodStorage.removeIngredient(Ingredient ingredient);
+                //FoodStorage foodStorage = new FoodStorage();
+                //foodStorage.removeIngredient(Ingredient ingredient);
                 break;
             case 3:
                 //findIngredient();
@@ -87,8 +82,6 @@ public class UserInteraction {
             default:
                 System.out.println("Invalid input");
         }
-
-
     }
 }
 

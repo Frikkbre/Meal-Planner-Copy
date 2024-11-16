@@ -1,4 +1,4 @@
-package main.edu.ntnu.idi.bidata;
+package edu.ntnu.idi.bidata.utility;
 
 //import java.util.Date;
 
@@ -232,19 +232,19 @@ public class Ingredient {
   /**
    * prints all information stored about the given object.
    */
-  /*public void displayInformation() {
+  public void displayInformation() {
     System.out.println("Name: " + getIngredientName());
     System.out.println("Type: " + getIngredientType());
     System.out.println("Price: " + getIngredientPrice() + "kr");
     System.out.println("Amount: " + getIngredientAmount());
     System.out.println("Unit: " + getIngredientUnit());
     System.out.println("Is Expired: " + getIngredientIsExpired());
-  } TODO - remove this method?
+  }
 
 
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     // Create an ingredient
-    Ingredient bellPepper = new main.edu.ntnu.idi.bidata.Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 10, 19);
+    Ingredient bellPepper = new edu.ntnu.idi.bidata.utility.Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 10, 19);
 
     LocalDate currentDate = LocalDate.now(); //https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html#now()
     LocalDate expiryDate = LocalDate.of(2025, 10, 12);
