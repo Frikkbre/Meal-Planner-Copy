@@ -1,6 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/RyiBKJgD)
 # Portfolio project IDATA1003
-This file uses Mark Down syntax. For more information see [here](https://www.markdownguide.org/basic-syntax/).
 
 [//]: # (TODO: Fill inn your name and student ID)
 
@@ -9,7 +8,11 @@ STUDENT ID = 134149
 
 ## Project description
 
-[//]: # (TODO: Write a short description of your project/product here.)
+[//]
+This project is a meal planning application. The user can add recipes to the application, and add their available ingredients. \
+The application will then suggest recipes based on the ingredients the user has. The user can edit the recipes, add new recipes.\
+The application will delete used ingredients from the user's inventory when a recipe is used.\
+The user remains in controll of tjhe inventory, and can add and remove ingredients as they please.
 
 ## Project structure
 
@@ -17,7 +20,8 @@ STUDENT ID = 134149
 
 ## Link to repository
 
-[//]: # (TODO: Include a link to your GitHub repository here.)
+[//]: # (TODO: Is this the correct link?)
+https://github.com/NTNU-BIDATA-IDATG1003-2024/meal-planning-Frikkbre.git
 
 ## How to run the project
 
