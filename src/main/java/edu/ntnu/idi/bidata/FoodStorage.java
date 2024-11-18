@@ -26,13 +26,14 @@ public class FoodStorage {
      *
      * @param newIngredient the {@link Ingredient} to be added to the storage
      */
-    public void addIngredient(Ingredient newIngredient){
-        if(foodStorage.containsKey(newIngredient.getIngredientName())){
-            Ingredient existingIngredient = foodStorage.get(newIngredient.getIngredientName());
+    public void addIngredient(Ingredient newIngredient) {
+        String lowerCaseIngredientName = newIngredient.getIngredientName().toLowerCase();
+
+        if (foodStorage.containsKey(lowerCaseIngredientName)) {
+            Ingredient existingIngredient = foodStorage.get(lowerCaseIngredientName);
             existingIngredient.setIngredientAmount(existingIngredient.getIngredientAmount() + newIngredient.getIngredientAmount());
-        }
-        else {
-            foodStorage.put(newIngredient.getIngredientName(), newIngredient);
+        } else {
+            foodStorage.put(lowerCaseIngredientName, newIngredient);
         }
     }
 
@@ -44,30 +45,27 @@ public class FoodStorage {
      * @param amountToRemove the amount of the ingredient to remove
      */
     public void removeIngredient(String ingredientName, int amountToRemove) {
-        if (foodStorage.containsKey(ingredientName)) {
-            // Retrieve the ingredient object
-            Ingredient existingIngredient = foodStorage.get(ingredientName);
+        String lowerCaseIngredientName = ingredientName.toLowerCase();
 
-            // Check if the amount to remove is valid
+        if (foodStorage.containsKey(lowerCaseIngredientName)) {
+            Ingredient existingIngredient = foodStorage.get(lowerCaseIngredientName);
+
             if (amountToRemove <= 0) {
                 System.out.println("Invalid amount to remove. Please enter a positive value.");
                 return;
             }
 
             if (amountToRemove >= existingIngredient.getIngredientAmount()) {
-                // Remove the ingredient entirely if removing more than or equal to the stored amount
-                foodStorage.remove(ingredientName);
-                System.out.println(ingredientName + " has been removed completely.");
+                foodStorage.remove(lowerCaseIngredientName);
+                System.out.println(lowerCaseIngredientName + " has been removed completely.");
             } else {
-                // Update the ingredient's amount
                 existingIngredient.setIngredientAmount(
                     existingIngredient.getIngredientAmount() - amountToRemove
                 );
-                System.out.println(amountToRemove + " units of " + ingredientName + " have been removed.");
+                System.out.println(amountToRemove + " units of " + lowerCaseIngredientName + " have been removed.");
             }
         } else {
-            // Ingredient not found in the storage
-            System.out.println("Ingredient not found: " + ingredientName);
+            System.out.println("Ingredient not found: " + lowerCaseIngredientName);
         }
     }
 
@@ -76,10 +74,19 @@ public class FoodStorage {
      *
      * @param ingredientName the name of the ingredient to search for
      */
-    public void searchIngredient(String ingredientName){
-        if(foodStorage.containsKey(ingredientName)){
-            System.out.println("Ingredient found: " + foodStorage.get(ingredientName));
-        } else {
+    public void searchIngredient(String ingredientName) {
+        boolean found = false;
+
+        // Iterate over the map's values (Ingredient objects)
+        for (Ingredient ingredientIterated : foodStorage.values()) {
+            if (ingredientIterated.getIngredientName().equalsIgnoreCase(ingredientName)) {
+                System.out.println("Ingredient found: " + ingredientIterated);
+                found = true;
+                break; // Exit the loop once a match is found
+            }
+        }
+
+        if (!found) {
             System.out.println("Ingredient not found");
         }
     }
