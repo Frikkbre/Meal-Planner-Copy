@@ -1,5 +1,6 @@
-package edu.ntnu.idi.bidata.userInteraction;
+package edu.ntnu.idi.bidata.userInterface;
 
+import edu.ntnu.idi.bidata.FoodStorage;
 import edu.ntnu.idi.bidata.entity.Ingredient;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class MealPlannerApp {
 
     public static void startApplication(){
         Scanner inputScanner = new Scanner(System.in);
+        FoodStorage foodStorage = new FoodStorage();
 
         System.out.println("What do you want to do?");
         System.out.println("1 = Add ingredient");
@@ -33,7 +35,6 @@ public class MealPlannerApp {
                 inputScanner.nextLine();
 
                 for (int indexOfInput = 0; indexOfInput < howManyIngredients; indexOfInput++){
-
                     System.out.println("What is the name of the ingredient?");
                     String ingredientName = inputScanner.nextLine();
 
@@ -70,8 +71,15 @@ public class MealPlannerApp {
                 }
                 break;
             case 2:
-                //FoodStorage foodStorage = new FoodStorage();
-                //foodStorage.removeIngredient(Ingredient ingredient);
+                System.out.println("What is the name of the ingredient you want to remove?");
+                String ingredientName = inputScanner.nextLine();
+
+                System.out.println("How much do you want to remove?");
+                int amountToRemove = inputScanner.nextInt();
+                inputScanner.nextLine();
+
+                // Call removeIngredient with the name and amount
+                foodStorage.removeIngredient(ingredientName, amountToRemove);
                 break;
             case 3:
                 //findIngredient();
