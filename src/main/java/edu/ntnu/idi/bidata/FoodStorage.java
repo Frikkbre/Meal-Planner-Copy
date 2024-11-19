@@ -3,6 +3,8 @@ package edu.ntnu.idi.bidata;
 import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 import edu.ntnu.idi.bidata.entity.Ingredient;
 import java.util.HashMap;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The {@code FoodStorage} class is responsible for managing a collection of ingredients.
@@ -21,19 +23,69 @@ public class FoodStorage {
     private MealPlannerApp mealPlannerApp = new MealPlannerApp();
     private HashMap<String, Ingredient> foodStorage = new HashMap<>();
 
+    Scanner inputScanner = new Scanner(System.in);
+
     /**
      * Adds a new ingredient to the food storage.
-     *
-     * @param newIngredient the {@link Ingredient} to be added to the storage
      */
-    public void addIngredient(Ingredient newIngredient) {
-        String lowerCaseIngredientName = newIngredient.getIngredientName().toLowerCase();
+    public void addIngredient() { // newIngredient) {
+        System.out.println("How many different ingredients do you want to add?");
+        int howManyIngredients = inputScanner.nextInt();
+        inputScanner.nextLine();
 
-        if (foodStorage.containsKey(lowerCaseIngredientName)) {
-            Ingredient existingIngredient = foodStorage.get(lowerCaseIngredientName);
-            existingIngredient.setIngredientAmount(existingIngredient.getIngredientAmount() + newIngredient.getIngredientAmount());
-        } else {
-            foodStorage.put(lowerCaseIngredientName, newIngredient);
+        for (int indexOfInput = 0; indexOfInput < howManyIngredients; indexOfInput++) {
+            System.out.println("What is the name of the ingredient?");
+            String ingredientName = inputScanner.nextLine();
+
+            System.out.println("What type of ingredient is it?");
+            String ingredientType = inputScanner.nextLine();
+
+            System.out.println("What does the ingredient cost?");
+            float ingredientPrice = inputScanner.nextFloat();
+            inputScanner.nextLine();
+
+            System.out.println("How many/much do you have?");
+            float ingredientAmount = inputScanner.nextFloat();
+            inputScanner.nextLine();
+
+            System.out.println("What unit is it?, 1 = kg, 2 = g, 3 = liter, 4 = pieces");
+            int ingredientUnitChoice = inputScanner.nextInt();
+
+            System.out.println("What year does it expire? (xxxx)");
+            int ingredientExpirationYear = inputScanner.nextInt();
+            inputScanner.nextLine();
+
+            System.out.println("What month does it expire? (xx)");
+            int ingredientExpirationMonth = inputScanner.nextInt();
+            inputScanner.nextLine();
+
+            System.out.println("What day does it expire? (xx)");
+            int ingredientExpirationDay = inputScanner.nextInt();
+            inputScanner.nextLine();
+
+            Ingredient newIngredient = new Ingredient(ingredientName, ingredientType, ingredientPrice,
+                ingredientAmount, ingredientUnitChoice, ingredientExpirationYear,
+                ingredientExpirationMonth, ingredientExpirationDay);
+
+
+            newIngredient.displayInformation();
+
+            try { //TODO - Write AI declaration
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                System.out.println("Sleep failed: " + e.getMessage());
+                Thread.currentThread().interrupt(); // Reset the interrupt flag
+            }
+
+
+            String lowerCaseIngredientName = newIngredient.getIngredientName().toLowerCase();
+
+            if (foodStorage.containsKey(lowerCaseIngredientName)) {
+                Ingredient existingIngredient = foodStorage.get(lowerCaseIngredientName);
+                existingIngredient.setIngredientAmount(existingIngredient.getIngredientAmount() + newIngredient.getIngredientAmount());
+            } else {
+                foodStorage.put(lowerCaseIngredientName, newIngredient);
+            }
         }
     }
 
@@ -62,7 +114,7 @@ public class FoodStorage {
                 existingIngredient.setIngredientAmount(
                     existingIngredient.getIngredientAmount() - amountToRemove
                 );
-                System.out.println(amountToRemove + " units of " + lowerCaseIngredientName + " have been removed.");
+                System.out.println(amountToRemove + " units of " + lowerCaseIngredientName + " have been removed."); //TODO - Make units dynamic.
             }
         } else {
             System.out.println("Ingredient not found: " + lowerCaseIngredientName);
