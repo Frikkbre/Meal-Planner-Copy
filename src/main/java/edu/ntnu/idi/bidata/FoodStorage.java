@@ -21,9 +21,19 @@ import java.util.concurrent.TimeUnit;
 public class FoodStorage {
 
     private MealPlannerApp mealPlannerApp = new MealPlannerApp();
-    private HashMap<String, Ingredient> foodStorage = new HashMap<>();
+
+    private HashMap<String, Ingredient> foodRegister = new HashMap<>();
 
     Scanner inputScanner = new Scanner(System.in);
+
+    /**
+     * Returns the food storage register.
+     *
+     * @return the food storage register
+     */
+    public HashMap<String, Ingredient> getFoodRegister() {
+        return foodRegister;
+    }
 
     /**
      * Adds a new ingredient to the food storage.
@@ -68,7 +78,7 @@ public class FoodStorage {
                 ingredientExpirationMonth, ingredientExpirationDay);
 
 
-            newIngredient.displayInformation();
+            //newIngredient.displayInformation(); TODO - inplement to printHandler
 
             try { //TODO - Write AI declaration
                 TimeUnit.SECONDS.sleep(5);
@@ -80,11 +90,11 @@ public class FoodStorage {
 
             String lowerCaseIngredientName = newIngredient.getIngredientName().toLowerCase();
 
-            if (foodStorage.containsKey(lowerCaseIngredientName)) {
-                Ingredient existingIngredient = foodStorage.get(lowerCaseIngredientName);
+            if (foodRegister.containsKey(lowerCaseIngredientName)) {
+                Ingredient existingIngredient = foodRegister.get(lowerCaseIngredientName);
                 existingIngredient.setIngredientAmount(existingIngredient.getIngredientAmount() + newIngredient.getIngredientAmount());
             } else {
-                foodStorage.put(lowerCaseIngredientName, newIngredient);
+                foodRegister.put(lowerCaseIngredientName, newIngredient);
             }
         }
     }
@@ -93,14 +103,13 @@ public class FoodStorage {
      * Removes an ingredient from the food storage based on the ingredient object.
      *
      * @param ingredientName the {@link Ingredient} to be removed from the storage
-     *
      * @param amountToRemove the amount of the ingredient to remove
      */
     public void removeIngredient(String ingredientName, int amountToRemove) {
         String lowerCaseIngredientName = ingredientName.toLowerCase();
 
-        if (foodStorage.containsKey(lowerCaseIngredientName)) {
-            Ingredient existingIngredient = foodStorage.get(lowerCaseIngredientName);
+        if (foodRegister.containsKey(lowerCaseIngredientName)) {
+            Ingredient existingIngredient = foodRegister.get(lowerCaseIngredientName);
 
             if (amountToRemove <= 0) {
                 System.out.println("Invalid amount to remove. Please enter a positive value.");
@@ -108,7 +117,7 @@ public class FoodStorage {
             }
 
             if (amountToRemove >= existingIngredient.getIngredientAmount()) {
-                foodStorage.remove(lowerCaseIngredientName);
+                foodRegister.remove(lowerCaseIngredientName);
                 System.out.println(lowerCaseIngredientName + " has been removed completely.");
             } else {
                 existingIngredient.setIngredientAmount(
@@ -130,7 +139,7 @@ public class FoodStorage {
         boolean found = false;
 
         // Iterate over the map's values (Ingredient objects)
-        for (Ingredient ingredientIterated : foodStorage.values()) {
+        for (Ingredient ingredientIterated : foodRegister.values()) {
             if (ingredientIterated.getIngredientName().equalsIgnoreCase(ingredientName)) {
                 System.out.println("Ingredient found: " + ingredientIterated);
                 found = true;
@@ -148,9 +157,9 @@ public class FoodStorage {
      *
      * @param ingredientName the name of the ingredient to be removed
      */
-    public void removeIngredient(String ingredientName){
-        if(foodStorage.containsKey(ingredientName)){
-            foodStorage.remove(ingredientName);
+    public void removeIngredient(String ingredientName) {
+        if (foodRegister.containsKey(ingredientName)) {
+            foodRegister.remove(ingredientName);
             System.out.println("Ingredient removed");
         } else {
             System.out.println("Ingredient not found");
@@ -158,12 +167,14 @@ public class FoodStorage {
     }
 
     /**
-     /* Searches for recipes based on the available ingredients in the storage.
-     /* <p>
-     /* This method is yet to be implemented.
-     /* </p>
-     /*/
-    // public void searchRecipe() {
-    //     // TODO - Finish this method
-    // }
+     * Displays all ingredients in the food storage.
+     */
+
+
+
+    public void showAllIngredients() {
+        for (Ingredient ingredient : foodRegister.values()) {
+            PrintHandler.printAllIngredients(ingredient);
+        }
+    }
 }

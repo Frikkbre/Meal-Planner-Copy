@@ -43,6 +43,8 @@ public class MealPlannerApp {
           System.out.println("1 = Add ingredient");
           System.out.println("2 = Remove ingredient");
           System.out.println("3 = Search ingredient");
+          System.out.println("4 = Show all ingredients");
+          System.out.println("5 = Show all expired ingredients");
           int ingredientChoice = inputScanner.nextInt();
           inputScanner.nextLine();
           switch (ingredientChoice) {
@@ -61,11 +63,14 @@ public class MealPlannerApp {
               foodStorage.removeIngredient(ingredientName, amountToRemove);
 
               break;
-            case 0:
+            case 3:
               System.out.println("What is the name of the ingredient you want to search for?");
               ingredientName = inputScanner.nextLine();
 
               foodStorage.searchIngredient(ingredientName);
+              break;
+            case 4:
+              foodStorage.showAllIngredients();
               break;
           }
           break;
