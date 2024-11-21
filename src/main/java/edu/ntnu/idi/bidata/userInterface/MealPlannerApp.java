@@ -1,6 +1,7 @@
 package edu.ntnu.idi.bidata.userInterface;
 
 import edu.ntnu.idi.bidata.FoodStorage;
+import edu.ntnu.idi.bidata.entity.Ingredient;
 
 import java.util.Scanner;
 
@@ -21,6 +22,8 @@ public class MealPlannerApp {
     Scanner inputScanner = new Scanner(System.in);
     FoodStorage foodStorage = new FoodStorage();
     boolean running = true;
+
+    foodStorage.addInitIngredient();
 
     mealPlannerApp.startApplication(mealPlannerApp, inputScanner, foodStorage, running);
   }
