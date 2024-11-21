@@ -1,10 +1,8 @@
 package edu.ntnu.idi.bidata.userInterface;
 
 import edu.ntnu.idi.bidata.FoodStorage;
-import edu.ntnu.idi.bidata.entity.Ingredient;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -17,17 +15,25 @@ public class MealPlannerApp {
    * take userInput here? add food and such. yes
    */
 
-  public static void startApplication() {
+
+  public static void initializeApplication() {
+    MealPlannerApp mealPlannerApp = new MealPlannerApp();
     Scanner inputScanner = new Scanner(System.in);
     FoodStorage foodStorage = new FoodStorage();
     boolean running = true;
+
+    mealPlannerApp.startApplication(mealPlannerApp, inputScanner, foodStorage, running);
+  }
+
+  public static void startApplication(MealPlannerApp mealPlannerApp, Scanner inputScanner, FoodStorage foodStorage, boolean running) {
+
 
     while (running) {
 
       System.out.println("What do you want to do?");
       System.out.println("1 = Modify ingredient");
       System.out.println("2 = Modify recipe");
-      System.out.println("3 = exit the program");
+      System.out.println("0 = exit the program");
 
       int inputChoice = inputScanner.nextInt();
       inputScanner.nextLine();
@@ -55,7 +61,7 @@ public class MealPlannerApp {
               foodStorage.removeIngredient(ingredientName, amountToRemove);
 
               break;
-            case 3:
+            case 0:
               System.out.println("What is the name of the ingredient you want to search for?");
               ingredientName = inputScanner.nextLine();
 
@@ -83,7 +89,7 @@ public class MealPlannerApp {
               break;
           }
           break;
-        case 3:
+        case 0:
           running = false;
           System.out.println("Exiting the program");
           System.out.println("Have a nice day!");

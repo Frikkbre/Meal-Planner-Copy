@@ -1,6 +1,7 @@
+
 package edu.ntnu.idi.bidata;
 
-import edu.ntnu.idi.bidata.userInteraction.MealPlannerApp;
+import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 
 /**
  * The main starting point of your application. Let this class create the
@@ -10,9 +11,8 @@ public class Main {
 
   public Main() {
     MealPlannerApp mealPlannerApp = new MealPlannerApp();
-    mealPlannerApp.startApplication();
+    mealPlannerApp.initializeApplication();
   }
-
 
   /**
    * The main method of the application.
@@ -21,6 +21,5 @@ public class Main {
    */
   public static void main(String[] args) {
     Main application = new Main();
-
   }
 }

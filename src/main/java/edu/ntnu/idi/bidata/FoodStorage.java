@@ -157,7 +157,7 @@ public class FoodStorage {
         }
     }
 
-     /**
+    /**
      /* Searches for recipes based on the available ingredients in the storage.
      /* <p>
      /* This method is yet to be implemented.
