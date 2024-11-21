@@ -35,6 +35,21 @@ public class FoodStorage {
         return foodRegister;
     }
 
+
+    public void addInitIngredient() {
+        Ingredient bellPepper = new Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 10, 19);
+        Ingredient tomato = new Ingredient("Tomato", "Vegetable", 14.90f, 5, 4, 2024, 10, 19);
+        Ingredient onion = new Ingredient("Onion", "Vegetable", 9.90f, 5, 4, 2024, 10, 19);
+        Ingredient garlic = new Ingredient("Garlic", "Vegetable", 9.90f, 5, 4, 2024, 10, 19);
+        Ingredient milk = new Ingredient("Milk", "Dairy", 14.90f, 5, 4, 2024, 10, 19);
+
+        foodRegister.put("bell pepper", bellPepper);
+        foodRegister.put("tomato", tomato);
+        foodRegister.put("onion", onion);
+        foodRegister.put("garlic", garlic);
+        foodRegister.put("milk", milk);
+    }
+
     /**
      * Adds a new ingredient to the food storage.
      */
