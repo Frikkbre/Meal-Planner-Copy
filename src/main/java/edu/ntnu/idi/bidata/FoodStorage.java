@@ -2,6 +2,8 @@ package edu.ntnu.idi.bidata;
 
 import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 import edu.ntnu.idi.bidata.entity.Ingredient;
+
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -193,9 +195,9 @@ public class FoodStorage {
         }
     }
 
-    public void showExpiredIngredients() {
+    public void showExpiredIngredients(LocalDate searchDate) {
         for (Ingredient ingredient : foodRegister.values()) {
-            if (ingredient.getIngredientIsExpired()) {
+            if (ingredient.getIngredientExpirationDate().isBefore(searchDate)) {
                 PrintHandler.printAllIngredients(ingredient);
             }
         }
