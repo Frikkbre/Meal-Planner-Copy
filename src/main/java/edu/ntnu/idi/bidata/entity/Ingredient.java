@@ -1,11 +1,11 @@
-package edu.ntnu.idi.bidata.utility;
+package edu.ntnu.idi.bidata.entity;
 
 //import java.util.Date;
 
 import java.time.LocalDate;
 
 
-/*/**
+/**
  * @author Frikk Brændsrød TODO - try cathc
  * @version 0.0.1
  * <p>
@@ -28,18 +28,21 @@ import java.time.LocalDate;
  * <p>
  * ingredientUnit, Type enum because it should once have a number of predetermined choices..
  * <p>
- * ingredientExpirationDate, Type LocalDate beacuse it uses the Class LacalDate to format dates and use LocalDate.now()
+ * ingredientExpirationDate, Type LocalDate beacuse it uses
+ * the Class LacalDate to format dates and use LocalDate.now()
+ *
  * <p>
  * ingredientIsExpired, Type boolean because it need to return either true or false.
  * @since 20.10.24 TODO - bare for metoder?
+ * @version 0.0.2
  */
 public class Ingredient {
-  private String ingredientName; //gfhgfgnbcbfc
+  private String ingredientName; //TODO - make this final?
   private String ingredientType;
   private float ingredientPrice;
   private float ingredientAmount;
 
-  private enum ingredientUnit {kg, g, liter, pieces}
+  private enum ingredientUnit { kg, g, liter, pieces }
 
   ; //TODO - make it add s if > 1
   private String ingredientUnitChosen;
@@ -47,15 +50,18 @@ public class Ingredient {
   private LocalDate ingredientExpirationDate;
   private boolean ingredientIsExpired;
 
+  /**
+   * Default constructor for Ingredient class.
+   */
   public Ingredient() {
 
   }
 
 
   /**
-   * Sets ingredient name and checks for illegal inputs
+   * Sets ingredient name and checks for illegal inputs.
    *
-   * @param ingredientName
+   * @param ingredientName the name of the ingredient
    */
   public void setIngredientName(String ingredientName) {
     if (ingredientName == null || ingredientName.isBlank() || ingredientName.isEmpty()) {
@@ -65,9 +71,9 @@ public class Ingredient {
   }
 
   /**
-   * Sets ingredient type and checks for illegal inputs
+   * Sets ingredient type and checks for illegal inputs.
    *
-   * @param ingredientType
+   * @param ingredientType the type of the ingredient
    */
 
   public void setIngredientType(String ingredientType) {
@@ -78,9 +84,9 @@ public class Ingredient {
   }
 
   /**
-   * Sets ingredient price and checks for illegal inputs
+   * Sets ingredient price and checks for illegal inputs.
    *
-   * @param ingredientPrice
+   * @param ingredientPrice the price of the ingredient
    */
   public void setIngredientPrice(float ingredientPrice) {
     if (ingredientPrice < 0) {
@@ -90,9 +96,9 @@ public class Ingredient {
   }
 
   /**
-   * Sets ingredient amount and checks for illegal inputs
+   * Sets ingredient amount and checks for illegal inputs.
    *
-   * @param ingredientAmount
+   * @param ingredientAmount the amount of the ingredient
    */
   public void setIngredientAmount(float ingredientAmount) {
     if (ingredientAmount < 0) {
@@ -102,9 +108,9 @@ public class Ingredient {
   }
 
   /**
-   * Sets ingredient unit and checks for illegal inputs
+   * Sets ingredient unit and checks for illegal inputs.
    *
-   * @param ingredientUnitchoice
+   * @param ingredientUnitchoice the unit of the ingredient
    */
   public void setIngredientUnit(int ingredientUnitchoice) {
     if (ingredientUnitchoice >= 1 && ingredientUnitchoice <= 4) {
@@ -129,14 +135,15 @@ public class Ingredient {
 
 
   /**
-   * Sets ingredient expiration date with three inputs divided into year month and day and checks for illegal inputs.
+   * Sets ingredient expiration date with three inputs
+   * divided into year month and day and checks for illegal inputs.
    *
-   * @param ingredientExpirationDateYear
-   * @param ingredientExpirationDateMonth
-   * @param ingredientExpirationDateDay
+   * @param ingredientExpirationDateYear year of expiration date
+   * @param ingredientExpirationDateMonth month of expiration date
+   * @param ingredientExpirationDateDay day of expiration date
    */
   public void setIngredientExpirationDate(int ingredientExpirationDateYear, int ingredientExpirationDateMonth, int ingredientExpirationDateDay) {
-    if (ingredientExpirationDateYear < 0 || ingredientExpirationDateYear > 2099 || ingredientExpirationDateMonth < 0 || ingredientExpirationDateMonth > 12 || ingredientExpirationDateDay < 0 || ingredientExpirationDateDay >= 31) {
+    if (ingredientExpirationDateYear < 0 || ingredientExpirationDateYear > 2099 || ingredientExpirationDateMonth < 0 || ingredientExpirationDateMonth > 12 || ingredientExpirationDateDay < 0 || ingredientExpirationDateDay > 32) {
       throw new IllegalArgumentException("Date format did not reach requirements, see documentation");
     }
     this.ingredientExpirationDate = LocalDate.of(ingredientExpirationDateYear, ingredientExpirationDateMonth, ingredientExpirationDateDay);
@@ -145,11 +152,12 @@ public class Ingredient {
   /**
    * Sets ingredient is expired boolean with todays date and input date.
    *
-   * @param ingredientIsExpired
+   * @param ingredientIsExpired boolean value of if ingredient is expired
    */
   public void setIngredientIsExpired(boolean ingredientIsExpired, LocalDate ingredientExpirationDate) { //TODO - make this method work. Is never called?
-    if (ingredientExpirationDate.isBefore(LocalDate.now()))        //TODO - move this to setIngredientExpirationDate?
+    if (ingredientExpirationDate.isBefore(LocalDate.now())) {        //TODO - move this to setIngredientExpirationDate?
       this.ingredientIsExpired = true;
+    }
     else if (ingredientExpirationDate.isAfter(LocalDate.now())) {
       this.ingredientIsExpired = false;
     }
@@ -212,47 +220,24 @@ public class Ingredient {
 
 
   /**
-   * @param ingredientType
-   * @param ingredientName
-   * @param ingredientPrice
-   * @param ingredientAmount
-   * @param ingredientExpirationDateYear
-   * @param ingredientExpirationDateMonth
-   * @param ingredientExpirationDateDay
+   * Constructor for Ingredient class.
+   * calls the set methods for the fields.
+   * used to create an object of the class in the main method.
+   *
+   * @param ingredientType the type of ingredient
+   * @param ingredientName the name of the ingredient
+   * @param ingredientPrice the price of the ingredient
+   * @param ingredientAmount the amount of the ingredient
+   * @param ingredientExpirationDateYear the year of expiration date
+   * @param ingredientExpirationDateMonth the month of expiration date
+   * @param ingredientExpirationDateDay the day of expiration date
    */
   public Ingredient(String ingredientName, String ingredientType, float ingredientPrice, float ingredientAmount, int ingredientUnitChoice, int ingredientExpirationDateYear, int ingredientExpirationDateMonth, int ingredientExpirationDateDay) {
     setIngredientName(ingredientName);
-    setIngredientType(ingredientType);
+    setIngredientType(ingredientType); //TODO - this.???
     setIngredientPrice(ingredientPrice);
     setIngredientAmount(ingredientAmount);
     setIngredientUnit(ingredientUnitChoice);
     setIngredientExpirationDate(ingredientExpirationDateYear, ingredientExpirationDateMonth, ingredientExpirationDateDay);
   }
-
-  /**
-   * prints all information stored about the given object.
-   */
-  public void displayInformation() {
-    System.out.println("Name: " + getIngredientName());
-    System.out.println("Type: " + getIngredientType());
-    System.out.println("Price: " + getIngredientPrice() + "kr");
-    System.out.println("Amount: " + getIngredientAmount());
-    System.out.println("Unit: " + getIngredientUnit());
-    System.out.println("Is Expired: " + getIngredientIsExpired());
-  }
-
-
-  /*public static void main(String[] args) {
-    // Create an ingredient
-    Ingredient bellPepper = new edu.ntnu.idi.bidata.utility.Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 10, 19);
-
-    LocalDate currentDate = LocalDate.now(); //https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html#now()
-    LocalDate expiryDate = LocalDate.of(2025, 10, 12);
-    System.out.println(currentDate);
-    System.out.println(bellPepper.ingredientExpirationDate);
-
-    // Display information
-    bellPepper.displayInformation();
-
-  }TODO - Should this class have psvm?*/
 }
