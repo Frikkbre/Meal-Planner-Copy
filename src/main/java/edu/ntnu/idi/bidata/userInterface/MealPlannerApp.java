@@ -3,6 +3,7 @@ package edu.ntnu.idi.bidata.userInterface;
 import edu.ntnu.idi.bidata.FoodStorage;
 import edu.ntnu.idi.bidata.entity.Ingredient;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -28,6 +29,25 @@ public class MealPlannerApp {
     mealPlannerApp.startApplication(mealPlannerApp, inputScanner, foodStorage, running);
   }
 
+
+  /**
+   * Formats the date to a LocalDate object.
+   * Used in the searchExpiredIngredients method.
+   *
+   * @param year  the year
+   * @param month the month
+   * @param day   the day
+   * @return the formatted date
+   */
+  public LocalDate formatDate(int year, int month, int day) {
+    if (year < 0 || year > 2099 || month < 0 || month > 12 || day < 0 || day > 32) {
+      throw new IllegalArgumentException("Date format did not reach requirements, Year: 0-2099, Month: 0-12, Day: 0-32");
+    }
+    LocalDate formattedDate = LocalDate.of(year, month, day);
+    return formattedDate;
+  }
+
+
   public static void startApplication(MealPlannerApp mealPlannerApp, Scanner inputScanner, FoodStorage foodStorage, boolean running) {
 
 
@@ -46,8 +66,8 @@ public class MealPlannerApp {
           System.out.println("1 = Add ingredient");
           System.out.println("2 = Remove ingredient");
           System.out.println("3 = Search ingredient");
-          System.out.println("4 = Show all ingredients");
-          System.out.println("5 = Show all expired ingredients");
+          System.out.println("4 = Show ingredients");
+          System.out.println("5 = Show expired ingredients");
           int ingredientChoice = inputScanner.nextInt();
           inputScanner.nextLine();
           switch (ingredientChoice) {
@@ -74,6 +94,21 @@ public class MealPlannerApp {
               break;
             case 4:
               foodStorage.showAllIngredients();
+              break;
+            case 5:
+              System.out.println("What date do you want to check for expired ingredients?");
+              System.out.println("Year:");
+              int inputYear = inputScanner.nextInt();
+
+              System.out.println("Month:");
+              int inputMonth = inputScanner.nextInt();
+
+              System.out.println("Day:");
+              int inputDay = inputScanner.nextInt();
+
+              LocalDate date = LocalDate.of(inputYear, inputMonth, inputDay);
+
+              foodStorage.showExpiredIngredients(date);
               break;
           }
           break;
