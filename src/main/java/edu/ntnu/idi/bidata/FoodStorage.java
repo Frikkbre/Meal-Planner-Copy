@@ -37,11 +37,11 @@ public class FoodStorage {
 
 
     public void addInitIngredient() {
-        Ingredient bellPepper = new Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 10, 19);
-        Ingredient tomato = new Ingredient("Tomato", "Vegetable", 14.90f, 5, 4, 2024, 10, 19);
-        Ingredient onion = new Ingredient("Onion", "Vegetable", 9.90f, 5, 4, 2024, 10, 19);
-        Ingredient garlic = new Ingredient("Garlic", "Vegetable", 9.90f, 5, 4, 2024, 10, 19);
-        Ingredient milk = new Ingredient("Milk", "Dairy", 14.90f, 5, 4, 2024, 10, 19);
+        Ingredient bellPepper = new Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 12, 24);
+        Ingredient tomato = new Ingredient("Tomato", "Vegetable", 14.90f, 5, 4, 2024, 12, 31);
+        Ingredient onion = new Ingredient("Onion", "Vegetable", 9.90f, 5, 4, 2024, 12, 30);
+        Ingredient garlic = new Ingredient("Garlic", "Vegetable", 9.90f, 5, 4, 2024, 10, 11);
+        Ingredient milk = new Ingredient("Milk", "Dairy", 14.90f, 5, 4, 2024, 11, 22);
 
         foodRegister.put("bell pepper", bellPepper);
         foodRegister.put("tomato", tomato);
@@ -190,6 +190,14 @@ public class FoodStorage {
     public void showAllIngredients() {
         for (Ingredient ingredient : foodRegister.values()) {
             PrintHandler.printAllIngredients(ingredient);
+        }
+    }
+
+    public void showExpiredIngredients() {
+        for (Ingredient ingredient : foodRegister.values()) {
+            if (ingredient.getIngredientIsExpired()) {
+                PrintHandler.printAllIngredients(ingredient);
+            }
         }
     }
 }
