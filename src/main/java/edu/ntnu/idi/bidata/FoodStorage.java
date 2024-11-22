@@ -4,8 +4,7 @@ import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 import edu.ntnu.idi.bidata.entity.Ingredient;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -25,6 +24,8 @@ public class FoodStorage {
     private MealPlannerApp mealPlannerApp = new MealPlannerApp();
 
     private HashMap<String, Ingredient> foodRegister = new HashMap<>();
+
+    static Map<String, Integer> sortedMap = new HashMap<>();
 
     Scanner inputScanner = new Scanner(System.in);
 
@@ -186,19 +187,25 @@ public class FoodStorage {
     /**
      * Displays all ingredients in the food storage.
      */
+    public void showSortedIngredients() {
+        List<String> sortedKeys = new ArrayList<>(foodRegister.keySet());
+        Collections.sort(sortedKeys);
 
-
-
-    public void showAllIngredients() {
-        for (Ingredient ingredient : foodRegister.values()) {
-            PrintHandler.printAllIngredients(ingredient);
+        for (String key : sortedKeys) {
+            Ingredient ingredient = foodRegister.get(key);
+            PrintHandler.printIngredient(ingredient);
         }
     }
 
+    /**
+     * Displays all ingredients in the food storage that have expired before a given date.
+     *
+     * @param searchDate the date to compare against the expiration date
+     */
     public void showExpiredIngredients(LocalDate searchDate) {
         for (Ingredient ingredient : foodRegister.values()) {
             if (ingredient.getIngredientExpirationDate().isBefore(searchDate)) {
-                PrintHandler.printAllIngredients(ingredient);
+                PrintHandler.printIngredient(ingredient);
             }
         }
     }
