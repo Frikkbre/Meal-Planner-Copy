@@ -23,6 +23,10 @@ The user remains in controll of tjhe inventory, and can add and remove ingredien
 [//]: # (TODO: Is this the correct link?)
 https://github.com/NTNU-BIDATA-IDATG1003-2024/meal-planning-Frikkbre.git
 
+## Link to report repository
+
+https://github.com/Frikkbre/Mealplanner-rapport.git
+
 ## How to run the project
 
 [//]: # (TODO: Describe how to run your project here. What is the main class? What is the main method?
