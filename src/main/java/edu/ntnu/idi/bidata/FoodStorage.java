@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class FoodStorage {
 
-    private MealPlannerApp mealPlannerApp = new MealPlannerApp();
-
     private HashMap<String, Ingredient> foodRegister = new HashMap<>();
 
     static Map<String, Integer> sortedMap = new HashMap<>();
@@ -38,13 +36,17 @@ public class FoodStorage {
         return foodRegister;
     }
 
+    public FoodStorage(MealPlannerApp mealPlannerApp) {
+
+    }
+
 
     public void addInitIngredient() {
         Ingredient bellPepper = new Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 12, 24);
         Ingredient tomato = new Ingredient("Tomato", "Vegetable", 14.90f, 5, 4, 2024, 12, 31);
         Ingredient onion = new Ingredient("Onion", "Vegetable", 9.90f, 5, 4, 2024, 12, 30);
         Ingredient garlic = new Ingredient("Garlic", "Vegetable", 9.90f, 5, 4, 2024, 10, 11);
-        Ingredient milk = new Ingredient("Milk", "Dairy", 14.90f, 5, 4, 2024, 11, 22);
+        Ingredient milk = new Ingredient("Milk", "Dairy", 14.90f, 5, 3, 2024, 11, 22);
 
         foodRegister.put("bell pepper", bellPepper);
         foodRegister.put("tomato", tomato);
@@ -187,7 +189,7 @@ public class FoodStorage {
     /**
      * Displays all ingredients in the food storage.
      */
-    public void showSortedIngredients() {
+    public void showSortedIngredients() { //TODO - use stream instead?
         List<String> sortedKeys = new ArrayList<>(foodRegister.keySet());
         Collections.sort(sortedKeys);
 

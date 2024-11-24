@@ -1,7 +1,6 @@
 package edu.ntnu.idi.bidata.userInterface;
 
 import edu.ntnu.idi.bidata.FoodStorage;
-import edu.ntnu.idi.bidata.entity.Ingredient;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -18,10 +17,9 @@ public class MealPlannerApp {
    */
 
 
-  public static void initializeApplication() {
-    MealPlannerApp mealPlannerApp = new MealPlannerApp();
+  public static void initializeApplication(MealPlannerApp mealPlannerApp) {
     Scanner inputScanner = new Scanner(System.in);
-    FoodStorage foodStorage = new FoodStorage();
+    FoodStorage foodStorage = new FoodStorage(mealPlannerApp);
     boolean running = true;
 
     foodStorage.addInitIngredient();
@@ -48,7 +46,7 @@ public class MealPlannerApp {
   }
 
 
-  public static void startApplication(MealPlannerApp mealPlannerApp, Scanner inputScanner, FoodStorage foodStorage, boolean running) {
+  public void startApplication(MealPlannerApp mealPlannerApp, Scanner inputScanner, FoodStorage foodStorage, boolean running) {
 
 
     while (running) {
@@ -93,7 +91,7 @@ public class MealPlannerApp {
               foodStorage.searchIngredient(ingredientName);
               break;
             case 4:
-              foodStorage.showAllIngredients();
+              foodStorage.showSortedIngredients();
               break;
             case 5:
               System.out.println("What date do you want to check for expired ingredients?");
