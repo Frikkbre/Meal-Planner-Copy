@@ -1,13 +1,10 @@
-package edu.ntnu.idi.bidata.utility;
+package edu.ntnu.idi.bidata.entity;
 
 public class Recipe { //TODO - Should this be hardcoded or should it be user input?
-    private String recipeName;
-    private String recipeDescription;
-    private String recipeIngredients;
-    private String recipeInstructions;
-    private String recipeCategory;
-    private String recipeDifficulty;
-    private String recipeTime;
+  private String recipeName;
+  private String recipeDescription;
+  private String recipeIngredients;
+  private String recipeInstructions;
 
 
   public String getRecipeName() {
@@ -15,7 +12,11 @@ public class Recipe { //TODO - Should this be hardcoded or should it be user inp
   }
 
   public void setRecipeName(String recipeName) {
-    this.recipeName = recipeName;
+    if (recipeName == null || recipeName.isEmpty()) {
+      throw new IllegalArgumentException("Recipe name cannot be null or empty");
+    } else{
+      this.recipeName = recipeName;
+    }
   }
 
   public String getRecipeDescription() {
@@ -23,7 +24,11 @@ public class Recipe { //TODO - Should this be hardcoded or should it be user inp
   }
 
   public void setRecipeDescription(String recipeDescription) {
-    this.recipeDescription = recipeDescription;
+    if(recipeDescription == null || recipeDescription.isEmpty()){
+      throw new IllegalArgumentException("Recipe description cannot be null or empty");
+    } else {
+      this.recipeDescription = recipeDescription;
+    }
   }
 
   public String getRecipeIngredients() {
@@ -31,31 +36,11 @@ public class Recipe { //TODO - Should this be hardcoded or should it be user inp
   }
 
   public void setRecipeIngredients(String recipeIngredients) {
-    this.recipeIngredients = recipeIngredients;
-  }
-
-  public String getRecipeTime() {
-    return recipeTime;
-  }
-
-  public void setRecipeTime(String recipeTime) {
-    this.recipeTime = recipeTime;
-  }
-
-  public String getRecipeDifficulty() {
-    return recipeDifficulty;
-  }
-
-  public void setRecipeDifficulty(String recipeDifficulty) {
-    this.recipeDifficulty = recipeDifficulty;
-  }
-
-  public String getRecipeCategory() {
-    return recipeCategory;
-  }
-
-  public void setRecipeCategory(String recipeCategory) {
-    this.recipeCategory = recipeCategory;
+    if(recipeIngredients == null || recipeIngredients.isEmpty()){
+      throw new IllegalArgumentException("Recipe ingredients cannot be null or empty");
+    } else {
+      this.recipeIngredients = recipeIngredients;
+    }
   }
 
   public String getRecipeInstructions() {
@@ -63,16 +48,18 @@ public class Recipe { //TODO - Should this be hardcoded or should it be user inp
   }
 
   public void setRecipeInstructions(String recipeInstructions) {
-    this.recipeInstructions = recipeInstructions;
+    if(recipeInstructions == null || recipeInstructions.isEmpty()){
+      throw new IllegalArgumentException("Recipe instructions cannot be null or empty");
+    } else {
+      this.recipeInstructions = recipeInstructions;
+    }
   }
 
-  public Recipe(String recipeName, String recipeDescription, String recipeIngredients, String recipeInstructions, String recipeCategory, String recipeDifficulty, String recipeTime) {
-        this.recipeName = recipeName;
-        this.recipeDescription = recipeDescription;
-        this.recipeIngredients = recipeIngredients;
-        this.recipeInstructions = recipeInstructions;
-        this.recipeCategory = recipeCategory;
-        this.recipeDifficulty = recipeDifficulty;
-        this.recipeTime = recipeTime;
-    }
+  public Recipe(String recipeName, String recipeDescription, String recipeIngredients, String recipeInstructions,
+                String recipeCategory, String recipeDifficulty, String recipeTime) {
+    this.recipeName = recipeName;
+    this.recipeDescription = recipeDescription;
+    this.recipeIngredients = recipeIngredients;
+    this.recipeInstructions = recipeInstructions;
+  }
 }
