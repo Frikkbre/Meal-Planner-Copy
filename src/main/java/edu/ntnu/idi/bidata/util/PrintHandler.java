@@ -1,4 +1,4 @@
-package edu.ntnu.idi.bidata;
+package edu.ntnu.idi.bidata.util;
 
 import edu.ntnu.idi.bidata.entity.Ingredient;
 
