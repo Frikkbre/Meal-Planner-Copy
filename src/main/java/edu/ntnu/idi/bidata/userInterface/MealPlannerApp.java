@@ -1,6 +1,7 @@
 package edu.ntnu.idi.bidata.userInterface;
 
-import edu.ntnu.idi.bidata.FoodStorage;
+import edu.ntnu.idi.bidata.registry.CookBook;
+import edu.ntnu.idi.bidata.registry.FoodStorage;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -20,11 +21,13 @@ public class MealPlannerApp {
   public static void initializeApplication(MealPlannerApp mealPlannerApp) {
     Scanner inputScanner = new Scanner(System.in);
     FoodStorage foodStorage = new FoodStorage(mealPlannerApp);
+    CookBook cookBook = new CookBook();
     boolean running = true;
 
     foodStorage.addInitIngredient();
+    //cookBook.addInitRecipe();
 
-    mealPlannerApp.startApplication(mealPlannerApp, inputScanner, foodStorage, running);
+    mealPlannerApp.startApplication(mealPlannerApp, inputScanner, foodStorage, cookBook, running);
   }
 
 
@@ -46,7 +49,7 @@ public class MealPlannerApp {
   }
 
 
-  public void startApplication(MealPlannerApp mealPlannerApp, Scanner inputScanner, FoodStorage foodStorage, boolean running) {
+  public void startApplication(MealPlannerApp mealPlannerApp, Scanner inputScanner, FoodStorage foodStorage, CookBook cookBook, boolean running) {
 
 
     while (running) {
@@ -118,15 +121,18 @@ public class MealPlannerApp {
           System.out.println("3 = search recipe");
           System.out.println("What do you want to do with recipies?");
           int recipeChoice = inputScanner.nextInt();
+          inputScanner.nextLine();
           switch (recipeChoice) {
             case 1:
-              //addRecipe();
+              cookBook.addRecipe();
               break;
             case 2:
               //removeRecipe();
               break;
             case 3:
-              //searchRecipe();
+              System.out.println("What is the name of the recipe you want to search for?");
+              String recipeName = inputScanner.nextLine();
+              cookBook.searchRecipe(recipeName);
               break;
           }
           break;
