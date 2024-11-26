@@ -16,6 +16,23 @@ public class CookBook {
   public CookBook() {
   }
 
+  public void addInitRecipe() {
+    HashMap<String, Integer> recipeIngredients = new HashMap<>();
+    recipeIngredients.put("Rice", 4);
+    recipeIngredients.put("Onion", 1);
+    recipeIngredients.put("Eggs", 4);
+    Recipe friedRice = new Recipe("Fried Rice", "Fried rice with eggs and onion", recipeIngredients, "Cook rice, fry eggs and onion, mix together");
+    recipeRegister.put(friedRice.getRecipeName(), friedRice);
+
+    recipeIngredients.put("spaghetti", 200); //Grams
+    recipeIngredients.put("meat", 400); //Grams
+    recipeIngredients.put("Bolognese sauce", 1); //Bolognese sauce
+    Recipe spaghettiBolognese = new Recipe("Spaghetti Bolognese", "Spaghetti with meat and tomato sauce", recipeIngredients, "Cook spaghetti, fry meat, add Bolognese sauce");
+    recipeRegister.put(spaghettiBolognese.getRecipeName(), spaghettiBolognese);
+
+
+  }
+
   public HashMap<String, Recipe> getRecipeRegister() {
     return recipeRegister;
   }
