@@ -1,7 +1,8 @@
-package edu.ntnu.idi.bidata;
+package edu.ntnu.idi.bidata.registry;
 
 import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 import edu.ntnu.idi.bidata.entity.Ingredient;
+import edu.ntnu.idi.bidata.util.PrintHandler;
 
 import java.time.LocalDate;
 import java.util.*;

@@ -2,10 +2,8 @@ package edu.ntnu.idi.bidata;
 
 import edu.ntnu.idi.bidata.entity.Ingredient;
 
-import java.util.HashMap;
-
 public class PrintHandler {
-  public static void printAllIngredients(Ingredient ingredient) {
+  public static void printIngredient(Ingredient ingredient) {
     //System.out.println("All ingredients:");
     //for (Ingredient ingredient : foodRegister.values()) {
     System.out.println("Name: " + ingredient.getIngredientName());
