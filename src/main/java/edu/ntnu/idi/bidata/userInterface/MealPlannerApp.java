@@ -2,6 +2,8 @@ package edu.ntnu.idi.bidata.userInterface;
 
 import edu.ntnu.idi.bidata.registry.CookBook;
 import edu.ntnu.idi.bidata.registry.FoodStorage;
+import edu.ntnu.idi.bidata.util.InputHandler;
+import edu.ntnu.idi.bidata.util.PrintHandler;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -19,12 +21,14 @@ public class MealPlannerApp {
   private Scanner inputScanner;
   private FoodStorage foodStorage;
   private CookBook cookBook;
+  private InputHandler inputHandler;
   private boolean running;
 
   public MealPlannerApp() {
     this.inputScanner = new Scanner(System.in);
     this.foodStorage = new FoodStorage(this);
     this.cookBook = new CookBook();
+    this.inputHandler = new InputHandler(inputScanner);
     this.running = true;
 
     initializeApplication(foodStorage, cookBook, this);
@@ -58,13 +62,8 @@ public class MealPlannerApp {
   //public void startApplication(){
 
     while (running) {
-
-      System.out.println("What do you want to do?");
-      System.out.println("1 = Modify ingredient");
-      System.out.println("2 = Modify recipe");
-      System.out.println("0 = exit the program");
-
-      int inputChoice = inputScanner.nextInt();
+      PrintHandler.printMainMenuOption();
+      int inputChoice = InputHandler.intInput(); //TODO - refactor whole menu to use InputHandler and PrintHandler
       inputScanner.nextLine();
 
       switch (inputChoice) {
@@ -124,7 +123,6 @@ public class MealPlannerApp {
           System.out.println("1 = Add recipe");
           System.out.println("2 = remove recipe");
           System.out.println("3 = search recipe");
-          System.out.println("What do you want to do with recipies?");
           int recipeChoice = inputScanner.nextInt();
           inputScanner.nextLine();
           switch (recipeChoice) {
