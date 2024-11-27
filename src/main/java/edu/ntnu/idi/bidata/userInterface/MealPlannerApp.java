@@ -16,18 +16,23 @@ public class MealPlannerApp {
    * <p></p>
    * take userInput here? add food and such. yes
    */
+  private Scanner inputScanner;
+  private FoodStorage foodStorage;
+  private CookBook cookBook;
+  private boolean running;
 
+  public MealPlannerApp() {
+    this.inputScanner = new Scanner(System.in);
+    this.foodStorage = new FoodStorage(this);
+    this.cookBook = new CookBook();
+    this.running = true;
 
-  public static void initializeApplication(MealPlannerApp mealPlannerApp) {
-    Scanner inputScanner = new Scanner(System.in);
-    FoodStorage foodStorage = new FoodStorage(mealPlannerApp);
-    CookBook cookBook = new CookBook();
-    boolean running = true;
-
+    initializeApplication(foodStorage, cookBook, this);
+    startApplication(this, inputScanner, foodStorage, cookBook, running);
+  }
+  public static void initializeApplication(FoodStorage foodStorage, CookBook cookBook, MealPlannerApp mealPlannerApp) {
     foodStorage.addInitIngredient();
-    //cookBook.addInitRecipe();
-
-    mealPlannerApp.startApplication(mealPlannerApp, inputScanner, foodStorage, cookBook, running);
+    cookBook.addInitRecipe();
   }
 
 
@@ -50,7 +55,7 @@ public class MealPlannerApp {
 
 
   public void startApplication(MealPlannerApp mealPlannerApp, Scanner inputScanner, FoodStorage foodStorage, CookBook cookBook, boolean running) {
-
+  //public void startApplication(){
 
     while (running) {
 
@@ -69,7 +74,7 @@ public class MealPlannerApp {
           System.out.println("3 = Search ingredient");
           System.out.println("4 = Show ingredients");
           System.out.println("5 = Show expired ingredients");
-          int ingredientChoice = inputScanner.nextInt();
+          int ingredientChoice = inputScanner.nextInt(); //TODO - add exeption handling
           inputScanner.nextLine();
           switch (ingredientChoice) {
             case 1:
@@ -136,6 +141,7 @@ public class MealPlannerApp {
               break;
           }
           break;
+
         case 0:
           running = false;
           System.out.println("Exiting the program");

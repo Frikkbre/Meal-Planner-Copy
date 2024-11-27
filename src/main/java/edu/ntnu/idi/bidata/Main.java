@@ -9,9 +9,13 @@ import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
  */
 public class Main {
 
-  public Main() {
-    MealPlannerApp mealPlannerApp = new MealPlannerApp();
-    mealPlannerApp.initializeApplication();
+  private Main() {
+    //MealPlannerApp mealPlannerApp = new MealPlannerApp();
+    try{
+      MealPlannerApp mealPlannerApp = new MealPlannerApp();
+    } catch (Exception e) {
+      System.out.println("An error occurred: " + e.getMessage());
+    }
   }
 
   /**
