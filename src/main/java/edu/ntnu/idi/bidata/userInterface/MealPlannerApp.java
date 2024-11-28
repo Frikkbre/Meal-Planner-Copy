@@ -1,5 +1,6 @@
 package edu.ntnu.idi.bidata.userInterface;
 
+import edu.ntnu.idi.bidata.entity.Ingredient;
 import edu.ntnu.idi.bidata.registry.CookBook;
 import edu.ntnu.idi.bidata.registry.FoodStorage;
 import edu.ntnu.idi.bidata.util.InputHandler;
@@ -63,37 +64,58 @@ public class MealPlannerApp {
 
     while (running) {
       PrintHandler.printMainMenuOption();
-      int inputChoice = InputHandler.intInput(); //TODO - refactor whole menu to use InputHandler and PrintHandler
-      inputScanner.nextLine();
+      int inputChoice = InputHandler.intInput();
 
       switch (inputChoice) {
         case 1:
-          System.out.println("1 = Add ingredient");
-          System.out.println("2 = Remove ingredient");
-          System.out.println("3 = Search ingredient");
-          System.out.println("4 = Show ingredients");
-          System.out.println("5 = Show expired ingredients");
-          int ingredientChoice = inputScanner.nextInt(); //TODO - add exeption handling
-          inputScanner.nextLine();
+          PrintHandler.printMenuIngredientOption();
+          int ingredientChoice = InputHandler.intInput();
           switch (ingredientChoice) {
             case 1:
-              foodStorage.addIngredient();
+              PrintHandler.printString("What is the name of the ingredient?");
+              String ingredientNameInput = InputHandler.stringInput();
+
+              PrintHandler.printString("What type of ingredient is it?");
+              String ingredientType = InputHandler.stringInput();
+
+              PrintHandler.printString("What does the ingredient cost?");
+              float ingredientPrice = InputHandler.floatInput();
+
+              PrintHandler.printString("How many/much do you have?");
+              float ingredientAmount = InputHandler.floatInput();
+
+              PrintHandler.printString("What unit is it?, 1 = kg, 2 = g, 3 = liter, 4 = pieces");
+              int ingredientUnitChoice = InputHandler.intInput();
+
+              PrintHandler.printString("What year does it expire? (xxxx)");
+              int ingredientExpirationYear = InputHandler.intInput();
+
+              PrintHandler.printString("What month does it expire? (xx)");
+              int ingredientExpirationMonth = InputHandler.intInput();
+
+              PrintHandler.printString("What day does it expire? (xx)");
+              int ingredientExpirationDay = InputHandler.intInput();
+
+              Ingredient newIngredient = new Ingredient(ingredientNameInput, ingredientType, ingredientPrice,
+                  ingredientAmount, ingredientUnitChoice, ingredientExpirationYear,
+                  ingredientExpirationMonth, ingredientExpirationDay);
+
+              foodStorage.addIngredient(newIngredient);
 
               break;
             case 2:
-              System.out.println("What is the name of the ingredient you want to remove?");
-              String ingredientName = inputScanner.nextLine();
+              PrintHandler.printString("What is the name of the ingredient you want to remove?");
+              String ingredientName = InputHandler.stringInput();
 
-              System.out.println("How much/many do you want to remove?");
-              int amountToRemove = inputScanner.nextInt();
-              inputScanner.nextLine();
+              PrintHandler.printString("How much/many do you want to remove?");
+              int amountToRemove = InputHandler.intInput();
 
               foodStorage.removeIngredient(ingredientName, amountToRemove);
 
               break;
             case 3:
-              System.out.println("What is the name of the ingredient you want to search for?");
-              ingredientName = inputScanner.nextLine();
+              PrintHandler.printString("What is the name of the ingredient you want to search for?");
+              ingredientName = InputHandler.stringInput();
 
               foodStorage.searchIngredient(ingredientName);
               break;
@@ -101,15 +123,15 @@ public class MealPlannerApp {
               foodStorage.showSortedIngredients();
               break;
             case 5:
-              System.out.println("What date do you want to check for expired ingredients?");
-              System.out.println("Year:");
-              int inputYear = inputScanner.nextInt();
+              PrintHandler.printString("What date do you want to check for expired ingredients?");
+              PrintHandler.printString("Year:");
+              int inputYear = InputHandler.intInput();
 
-              System.out.println("Month:");
-              int inputMonth = inputScanner.nextInt();
+              PrintHandler.printString("Month:");
+              int inputMonth = InputHandler.intInput();
 
-              System.out.println("Day:");
-              int inputDay = inputScanner.nextInt();
+              PrintHandler.printString("Day:");
+              int inputDay = InputHandler.intInput();
 
               LocalDate date = LocalDate.of(inputYear, inputMonth, inputDay);
 
@@ -120,11 +142,10 @@ public class MealPlannerApp {
 
         case 2:
 
-          System.out.println("1 = Add recipe");
-          System.out.println("2 = remove recipe");
-          System.out.println("3 = search recipe");
-          int recipeChoice = inputScanner.nextInt();
-          inputScanner.nextLine();
+          PrintHandler.printString("1 = Add recipe");
+          PrintHandler.printString("2 = remove recipe");
+          PrintHandler.printString("3 = search recipe");
+          int recipeChoice = InputHandler.intInput();
           switch (recipeChoice) {
             case 1:
               cookBook.addRecipe();
@@ -133,8 +154,8 @@ public class MealPlannerApp {
               //removeRecipe();
               break;
             case 3:
-              System.out.println("What is the name of the recipe you want to search for?");
-              String recipeName = inputScanner.nextLine();
+              PrintHandler.printString("What is the name of the recipe you want to search for?");
+              String recipeName = InputHandler.stringInput();
               cookBook.searchRecipe(recipeName);
               break;
           }
@@ -142,11 +163,10 @@ public class MealPlannerApp {
 
         case 0:
           running = false;
-          System.out.println("Exiting the program");
-          System.out.println("Have a nice day!");
+          PrintHandler.exitProgram();
           break;
         default:
-          System.out.println("Invalid input");
+          PrintHandler.invalidInput();
       }
     }
   }
