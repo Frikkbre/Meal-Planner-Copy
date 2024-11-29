@@ -1,13 +1,9 @@
 package edu.ntnu.idi.bidata.entity;
 
-//import java.util.Date;
-
 import java.time.LocalDate;
 
 
 /**
- * @author Frikk Brændsrød TODO - try cathc
- * @version 0.0.1
  * <p>
  * The Ingredient class holds information about
  * ingredients added by user and handles mutator and accessor methods.
@@ -33,18 +29,16 @@ import java.time.LocalDate;
  *
  * <p>
  * ingredientIsExpired, Type boolean because it need to return either true or false.
- * @since 20.10.24 TODO - bare for metoder?
+ * @author Frikk Brændsrød
+ * @since 20.10.24
  * @version 0.0.2
  */
 public class Ingredient {
-  private String ingredientName; //TODO - make this final?
+  private String ingredientName;
   private String ingredientType;
   private float ingredientPrice;
   private float ingredientAmount;
-
   private enum ingredientUnit { kg, g, liter, pieces }
-
-  ; //TODO - make it add s if > 1
   private String ingredientUnitChosen;
   private int ingredientUnitChoice;
   private LocalDate ingredientExpirationDate;
@@ -54,12 +48,13 @@ public class Ingredient {
    * Default constructor for Ingredient class.
    */
   public Ingredient() {
-
   }
 
 
   /**
    * Sets ingredient name and checks for illegal inputs.
+   * illegal inputs are empty strings.
+   * allows numbers
    *
    * @param ingredientName the name of the ingredient
    */
@@ -72,6 +67,7 @@ public class Ingredient {
 
   /**
    * Sets ingredient type and checks for illegal inputs.
+   * illegal inputs are empty strings.
    *
    * @param ingredientType the type of the ingredient
    */
@@ -85,6 +81,7 @@ public class Ingredient {
 
   /**
    * Sets ingredient price and checks for illegal inputs.
+   * illegal inputs are negative numbers and 0.
    *
    * @param ingredientPrice the price of the ingredient
    */
@@ -97,11 +94,12 @@ public class Ingredient {
 
   /**
    * Sets ingredient amount and checks for illegal inputs.
+   * illegal inputs are negative numbers and 0.
    *
    * @param ingredientAmount the amount of the ingredient
    */
   public void setIngredientAmount(float ingredientAmount) {
-    if (ingredientAmount < 0) {
+    if (ingredientAmount <= 0) {
       throw new IllegalArgumentException("Ingredient amount cannot be negative or 0");
     }
     this.ingredientAmount = ingredientAmount;
@@ -109,6 +107,8 @@ public class Ingredient {
 
   /**
    * Sets ingredient unit and checks for illegal inputs.
+   * The method takes an integer input and converts it to a string
+   * based on the enum ingredientUnit.
    *
    * @param ingredientUnitchoice the unit of the ingredient
    */
@@ -144,7 +144,7 @@ public class Ingredient {
    */
   public void setIngredientExpirationDate(int ingredientExpirationDateYear, int ingredientExpirationDateMonth, int ingredientExpirationDateDay) {
     if (ingredientExpirationDateYear < 0 || ingredientExpirationDateYear > 2099 || ingredientExpirationDateMonth < 0 || ingredientExpirationDateMonth > 12 || ingredientExpirationDateDay < 0 || ingredientExpirationDateDay > 32) {
-      throw new IllegalArgumentException("Date format did not reach requirements, see documentation");
+      throw new IllegalArgumentException("Date format did not reach requirements, Year: 0-2099, Month: 0-12, Day: 0-32");
     }
     this.ingredientExpirationDate = LocalDate.of(ingredientExpirationDateYear, ingredientExpirationDateMonth, ingredientExpirationDateDay);
   }
@@ -176,6 +176,8 @@ public class Ingredient {
   }
 
   /**
+   * returns type of ingredient
+   *
    * @return the type of ingredient
    */
   public String getIngredientType() {
@@ -183,6 +185,8 @@ public class Ingredient {
   }
 
   /**
+   * returns price of ingredient
+   *
    * @return the ingredient price
    */
   public float getIngredientPrice() {
@@ -190,6 +194,8 @@ public class Ingredient {
   }
 
   /**
+   * returns amount of ingredient
+   *
    * @return the ingredient amount
    */
   public float getIngredientAmount() {
@@ -197,6 +203,8 @@ public class Ingredient {
   }
 
   /**
+   * returns unit of ingredient
+   *
    * @return the ingredient unit
    */
   public String getIngredientUnit() {
@@ -204,6 +212,8 @@ public class Ingredient {
   }
 
   /**
+   * returns expiration date of ingredient
+   *
    * @return the ingredient expiration date
    */
   public LocalDate getIngredientExpirationDate() {
@@ -211,6 +221,8 @@ public class Ingredient {
   }
 
   /**
+   * returns if ingredient is expired
+   *
    * @return true or false based on expirqtion date
    */
   public boolean getIngredientIsExpired() {
@@ -234,7 +246,7 @@ public class Ingredient {
    */
   public Ingredient(String ingredientName, String ingredientType, float ingredientPrice, float ingredientAmount, int ingredientUnitChoice, int ingredientExpirationDateYear, int ingredientExpirationDateMonth, int ingredientExpirationDateDay) {
     setIngredientName(ingredientName);
-    setIngredientType(ingredientType); //TODO - this.???
+    setIngredientType(ingredientType);
     setIngredientPrice(ingredientPrice);
     setIngredientAmount(ingredientAmount);
     setIngredientUnit(ingredientUnitChoice);
