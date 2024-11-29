@@ -10,31 +10,46 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
+ * The {@code MealPlannerApp} class is responsible for managing the meal planning application.
+ * It provides a menu that calls methods from {@link FoodStorage} and {@link CookBook}.
+ * <p>
+ * This class interacts with {@link InputHandler} for potential user input handling
+ * and uses a {@link FoodStorage} object and a {@link CookBook} object to store ingredients and recipes.
+ * </p>
  *
+ * @version 1.0
+ * @since 22.10.2024
+ * @author Frikk Brændsrød
  */
 public class MealPlannerApp {
-  /**
-   * Should have fields like HashMap(key = ingredient, value = amount) used for recipes.
-   * other fields like
-   * <p></p>
-   * take userInput here? add food and such. yes
-   */
+
   private Scanner inputScanner;
   private FoodStorage foodStorage;
   private CookBook cookBook;
   private InputHandler inputHandler;
   private boolean running;
 
+  /**
+   * Constructs a new MealPlannerApp object.
+   * Initializes the application by adding initial ingredients and recipes.
+   */
   public MealPlannerApp() {
     this.inputScanner = new Scanner(System.in);
     this.foodStorage = new FoodStorage(this);
-    this.cookBook = new CookBook();
+    this.cookBook = new CookBook(inputHandler);
     this.inputHandler = new InputHandler(inputScanner);
     this.running = true;
 
     initializeApplication(foodStorage, cookBook, this);
     startApplication(this, inputScanner, foodStorage, cookBook, running);
   }
+  /**
+   * Initializes the application by adding initial ingredients and recipes.
+   *
+   * @param foodStorage the food storage object
+   * @param cookBook    the cook book object
+   * @param mealPlannerApp the meal planner app object
+   */
   public static void initializeApplication(FoodStorage foodStorage, CookBook cookBook, MealPlannerApp mealPlannerApp) {
     foodStorage.addInitIngredient();
     cookBook.addInitRecipe();
@@ -59,6 +74,17 @@ public class MealPlannerApp {
   }
 
 
+  /**
+   * Starts the application by providing a menu with options.
+   * The user can choose to add, remove, search, or show ingredients and recipes.
+   * The user can also check for expired ingredients.
+   *
+   * @param mealPlannerApp the meal planner app object
+   * @param inputScanner   the input scanner
+   * @param foodStorage    the food storage object
+   * @param cookBook       the cook book object
+   * @param running        the running boolean
+   */
   public void startApplication(MealPlannerApp mealPlannerApp, Scanner inputScanner, FoodStorage foodStorage, CookBook cookBook, boolean running) {
   //public void startApplication(){
 
@@ -142,9 +168,7 @@ public class MealPlannerApp {
 
         case 2:
 
-          PrintHandler.printString("1 = Add recipe");
-          PrintHandler.printString("2 = remove recipe");
-          PrintHandler.printString("3 = search recipe");
+        PrintHandler.printMenuRecipeOption();
           int recipeChoice = InputHandler.intInput();
           switch (recipeChoice) {
             case 1:
@@ -157,6 +181,9 @@ public class MealPlannerApp {
               PrintHandler.printString("What is the name of the recipe you want to search for?");
               String recipeName = InputHandler.stringInput();
               cookBook.searchRecipe(recipeName);
+              break;
+            case 4:
+              cookBook.showAllRecipes();
               break;
           }
           break;
