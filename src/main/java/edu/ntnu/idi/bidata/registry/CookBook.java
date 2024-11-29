@@ -7,6 +7,19 @@ import edu.ntnu.idi.bidata.util.PrintHandler;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * The {@code CookBook} class is responsible for managing a collection of recipes.
+ * It provides methods to add, remove, and search for recipes within the cookbook.
+ * <p>
+ * This class interacts with {@link InputHandler} for potential user input handling
+ * and uses a HashMap to store recipes where the key is the recipe name
+ * and the value is the {@link Recipe} object.
+ * </p>
+ *
+ * @version 1.0
+ * @since 02.11.2024
+ * @author Frikk Brændsrød
+ */
 public class CookBook {
 
   private HashMap<String, Recipe> recipeRegister = new HashMap<>();
@@ -16,6 +29,10 @@ public class CookBook {
   public CookBook(InputHandler inputHandler) {
   }
 
+  /**
+   * Adds initial recipes to the cookbook.
+   * Is ran from the initializeApplication method in the MealPlannerApp class.
+   */
   public void addInitRecipe() {
     HashMap<String, Integer> recipeIngredients = new HashMap<>();
     recipeIngredients.put("Rice", 4);
@@ -33,10 +50,19 @@ public class CookBook {
 
   }
 
+  /**
+   * Returns the recipe register.
+   * @return the recipe register
+   */
   public HashMap<String, Recipe> getRecipeRegister() {
     return recipeRegister;
   }
 
+  /**
+   * Adds a new recipe to the cookbook.
+   * The user is prompted to enter the recipe name, description, ingredients, and instructions.
+   * The recipe is then added to the recipe register.
+   */
   public void addRecipe() {
 
     HashMap <String, Integer> numberOfIngredientsMap = new HashMap<>();
@@ -69,10 +95,20 @@ public class CookBook {
     recipeRegister.put(recipeName, recipe);
   }
 
+  /**
+   * Removes a recipe from the cookbook based on the recipe name.
+   *
+   * @param recipeName the name of the recipe to be removed
+   */
   public void removeRecipe(String recipeName) {
     recipeRegister.remove(recipeName);
   }
 
+  /**
+   * Searches for a recipe in the cookbook by name and displays the result.
+   *
+   * @param recipeName the name of the recipe to search for
+   */
   public void searchRecipe(String recipeName) {
     for (Recipe recipe : recipeRegister.values()) {
       if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
@@ -81,6 +117,10 @@ public class CookBook {
     }
   }
 
+  /**
+   * Displays all recipes in the cookbook.
+   * Iterates over the recipe register and prints each recipe.
+   */
   public void showAllRecipes() {
     for (Recipe recipeRegister : recipeRegister.values()) {
       PrintHandler.printRecipe(recipeRegister);
