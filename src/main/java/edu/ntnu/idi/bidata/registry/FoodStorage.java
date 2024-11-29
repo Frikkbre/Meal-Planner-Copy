@@ -28,20 +28,15 @@ public class FoodStorage {
 
     Scanner inputScanner = new Scanner(System.in);
 
-    /**
-     * Returns the food storage register.
-     *
-     * @return the food storage register
-     */
-    public HashMap<String, Ingredient> getFoodRegister() {
-        return foodRegister;
-    }
-
     public FoodStorage(MealPlannerApp mealPlannerApp) {
 
     }
 
 
+    /**
+     * Adds initial ingredients to the food storage.
+     * Is ran from the initializeApplication method in the MealPlannerApp class.
+     */
     public void addInitIngredient() {
         Ingredient bellPepper = new Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 12, 24);
         Ingredient tomato = new Ingredient("Tomato", "Vegetable", 14.90f, 5, 4, 2024, 12, 31);
@@ -58,57 +53,9 @@ public class FoodStorage {
 
     /**
      * Adds a new ingredient to the food storage.
+     * If the ingredient already exists in the storage, the amount is increased.
      */
-    public void addIngredient() { // newIngredient) {
-        System.out.println("How many different ingredients do you want to add?");
-        int howManyIngredients = inputScanner.nextInt();
-        inputScanner.nextLine();
-
-        for (int indexOfInput = 0; indexOfInput < howManyIngredients; indexOfInput++) {
-            System.out.println("What is the name of the ingredient?");
-            String ingredientName = inputScanner.nextLine();
-
-            System.out.println("What type of ingredient is it?");
-            String ingredientType = inputScanner.nextLine();
-
-            System.out.println("What does the ingredient cost?");
-            float ingredientPrice = inputScanner.nextFloat();
-            inputScanner.nextLine();
-
-            System.out.println("How many/much do you have?");
-            float ingredientAmount = inputScanner.nextFloat();
-            inputScanner.nextLine();
-
-            System.out.println("What unit is it?, 1 = kg, 2 = g, 3 = liter, 4 = pieces");
-            int ingredientUnitChoice = inputScanner.nextInt();
-
-            System.out.println("What year does it expire? (xxxx)");
-            int ingredientExpirationYear = inputScanner.nextInt();
-            inputScanner.nextLine();
-
-            System.out.println("What month does it expire? (xx)");
-            int ingredientExpirationMonth = inputScanner.nextInt();
-            inputScanner.nextLine();
-
-            System.out.println("What day does it expire? (xx)");
-            int ingredientExpirationDay = inputScanner.nextInt();
-            inputScanner.nextLine();
-
-            Ingredient newIngredient = new Ingredient(ingredientName, ingredientType, ingredientPrice,
-                ingredientAmount, ingredientUnitChoice, ingredientExpirationYear,
-                ingredientExpirationMonth, ingredientExpirationDay);
-
-
-            //newIngredient.displayInformation(); TODO - inplement to printHandler
-
-            try { //TODO - Write AI declaration
-                TimeUnit.SECONDS.sleep(5);
-            } catch (InterruptedException e) {
-                System.out.println("Sleep failed: " + e.getMessage());
-                Thread.currentThread().interrupt(); // Reset the interrupt flag
-            }
-
-
+    public void addIngredient(Ingredient newIngredient) { // newIngredient) {
             String lowerCaseIngredientName = newIngredient.getIngredientName().toLowerCase();
 
             if (foodRegister.containsKey(lowerCaseIngredientName)) {
@@ -118,7 +65,6 @@ public class FoodStorage {
                 foodRegister.put(lowerCaseIngredientName, newIngredient);
             }
         }
-    }
 
     /**
      * Removes an ingredient from the food storage based on the ingredient object.
@@ -133,21 +79,21 @@ public class FoodStorage {
             Ingredient existingIngredient = foodRegister.get(lowerCaseIngredientName);
 
             if (amountToRemove <= 0) {
-                System.out.println("Invalid amount to remove. Please enter a positive value.");
+                PrintHandler.printString("Invalid amount to remove. Please enter a positive value.");
                 return;
             }
 
             if (amountToRemove >= existingIngredient.getIngredientAmount()) {
                 foodRegister.remove(lowerCaseIngredientName);
-                System.out.println(lowerCaseIngredientName + " has been removed completely.");
+                PrintHandler.printString(lowerCaseIngredientName + " has been removed completely.");
             } else {
                 existingIngredient.setIngredientAmount(
                     existingIngredient.getIngredientAmount() - amountToRemove
                 );
-                System.out.println(amountToRemove + " units of " + lowerCaseIngredientName + " have been removed."); //TODO - Make units dynamic.
+                PrintHandler.printString(amountToRemove + " units of " + lowerCaseIngredientName + " have been removed."); //TODO - Make units dynamic.
             }
         } else {
-            System.out.println("Ingredient not found: " + lowerCaseIngredientName);
+            PrintHandler.printString("Ingredient not found: " + lowerCaseIngredientName);
         }
     }
 
@@ -162,14 +108,14 @@ public class FoodStorage {
         // Iterate over the map's values (Ingredient objects)
         for (Ingredient ingredientIterated : foodRegister.values()) {
             if (ingredientIterated.getIngredientName().equalsIgnoreCase(ingredientName)) {
-                System.out.println("Ingredient found: " + ingredientIterated);
+                PrintHandler.searchIngredientPrint(ingredientIterated);
                 found = true;
-                break; // Exit the loop once a match is found
+                break; // TODO - is this nessesary?
             }
         }
-
+        //If the ingredient is not found, print a message
         if (!found) {
-            System.out.println("Ingredient not found");
+            PrintHandler.printString("Ingredient not found");
         }
     }
 
@@ -181,9 +127,9 @@ public class FoodStorage {
     public void removeIngredient(String ingredientName) {
         if (foodRegister.containsKey(ingredientName)) {
             foodRegister.remove(ingredientName);
-            System.out.println("Ingredient removed");
+            PrintHandler.printString("Ingredient removed");
         } else {
-            System.out.println("Ingredient not found");
+            PrintHandler.printString("Ingredient not found");
         }
     }
 
