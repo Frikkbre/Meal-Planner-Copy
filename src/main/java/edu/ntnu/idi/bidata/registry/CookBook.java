@@ -5,6 +5,7 @@ import edu.ntnu.idi.bidata.util.InputHandler;
 import edu.ntnu.idi.bidata.util.PrintHandler;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -101,7 +102,13 @@ public class CookBook {
    * @param recipeName the name of the recipe to be removed
    */
   public void removeRecipe(String recipeName) {
-    recipeRegister.remove(recipeName);
+    //recipeName = recipeName.toLowerCase(); TODO - Make it not case sensitive
+    if (recipeRegister.containsKey(recipeName)) {
+      recipeRegister.remove(recipeName);
+      PrintHandler.printString(recipeName + " was removed");
+    } else {
+      PrintHandler.printString("recipe not found");
+    }
   }
 
   /**

@@ -175,7 +175,9 @@ public class MealPlannerApp {
               cookBook.addRecipe();
               break;
             case 2:
-              //removeRecipe();
+              PrintHandler.printString("What is the name of the recipe you want to remove?");
+              String recipeNameRemove = InputHandler.stringInput();
+              cookBook.removeRecipe(recipeNameRemove);
               break;
             case 3:
               PrintHandler.printString("What is the name of the recipe you want to search for?");
