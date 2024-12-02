@@ -1,12 +1,14 @@
 package edu.ntnu.idi.bidata.userInterface;
 
 import edu.ntnu.idi.bidata.entity.Ingredient;
+import edu.ntnu.idi.bidata.entity.Recipe;
 import edu.ntnu.idi.bidata.registry.CookBook;
 import edu.ntnu.idi.bidata.registry.FoodStorage;
 import edu.ntnu.idi.bidata.util.InputHandler;
 import edu.ntnu.idi.bidata.util.PrintHandler;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -69,8 +71,7 @@ public class MealPlannerApp {
     if (year < 0 || year > 2099 || month < 0 || month > 12 || day < 0 || day > 32) {
       throw new IllegalArgumentException("Date format did not reach requirements, Year: 0-2099, Month: 0-12, Day: 0-32");
     }
-    LocalDate formattedDate = LocalDate.of(year, month, day);
-    return formattedDate;
+    return LocalDate.of(year, month, day);
   }
 
 
@@ -91,6 +92,7 @@ public class MealPlannerApp {
     while (running) {
       PrintHandler.printMainMenuOption();
       int inputChoice = InputHandler.intInput();
+
 
       switch (inputChoice) {
         case 1:
@@ -122,13 +124,17 @@ public class MealPlannerApp {
               PrintHandler.printString("What day does it expire? (xx)");
               int ingredientExpirationDay = InputHandler.intInput();
 
-              Ingredient newIngredient = new Ingredient(ingredientNameInput, ingredientType, ingredientPrice,
-                  ingredientAmount, ingredientUnitChoice, ingredientExpirationYear,
-                  ingredientExpirationMonth, ingredientExpirationDay);
+              try {
+                Ingredient newIngredient = new Ingredient(ingredientNameInput, ingredientType, ingredientPrice,
+                    ingredientAmount, ingredientUnitChoice, ingredientExpirationYear,
+                    ingredientExpirationMonth, ingredientExpirationDay);
 
-              foodStorage.addIngredient(newIngredient);
-
+                foodStorage.addIngredient(newIngredient);
+              } catch (IllegalArgumentException e) {
+                PrintHandler.printString(e.getMessage());
+              }
               break;
+
             case 2:
               PrintHandler.printString("What is the name of the ingredient you want to remove?");
               String ingredientName = InputHandler.stringInput();
@@ -136,18 +142,28 @@ public class MealPlannerApp {
               PrintHandler.printString("How much/many do you want to remove?");
               int amountToRemove = InputHandler.intInput();
 
-              foodStorage.removeIngredient(ingredientName, amountToRemove);
-
+              try{
+                foodStorage.removeIngredient(ingredientName, amountToRemove);
+              } catch (IllegalArgumentException e) {
+                PrintHandler.printString(e.getMessage());
+              }
               break;
+
             case 3:
               PrintHandler.printString("What is the name of the ingredient you want to search for?");
               ingredientName = InputHandler.stringInput();
 
-              foodStorage.searchIngredient(ingredientName);
+              try{
+                foodStorage.searchIngredient(ingredientName);
+              } catch (IllegalArgumentException e) {
+                PrintHandler.printString(e.getMessage());
+              }
               break;
+
             case 4:
               foodStorage.showSortedIngredients();
               break;
+
             case 5:
               PrintHandler.printString("What date do you want to check for expired ingredients?");
               PrintHandler.printString("Year:");
@@ -160,9 +176,13 @@ public class MealPlannerApp {
               int inputDay = InputHandler.intInput();
 
               LocalDate date = LocalDate.of(inputYear, inputMonth, inputDay);
-
-              foodStorage.showExpiredIngredients(date);
+              try{
+                foodStorage.showExpiredIngredients(date);
+              } catch (IllegalArgumentException e) {
+                PrintHandler.printString(e.getMessage());
+              }
               break;
+
           }
           break;
 
@@ -172,18 +192,57 @@ public class MealPlannerApp {
           int recipeChoice = InputHandler.intInput();
           switch (recipeChoice) {
             case 1:
-              cookBook.addRecipe();
+              PrintHandler.printString("Enter recipe name: ");
+              String recipeName = InputHandler.stringInput();
+
+              PrintHandler.printString("Enter recipe description: ");
+              String recipeDescription = InputHandler.stringInput();
+
+              PrintHandler.printString("Enter recipe instructions: ");
+              String recipeInstructions = InputHandler.stringInput();
+
+              PrintHandler.printString("How many ingredients does the recipe have?");
+              int numberOfIngredients = InputHandler.intInput();
+
+              HashMap<String, Integer> recipeIngredients = new HashMap<>();
+              for (int i = 0; i < numberOfIngredients; i++) {
+                PrintHandler.printString("Enter ingredient name: ");
+                String ingredientName = InputHandler.stringInput();
+
+                PrintHandler.printString("Enter ingredient amount: ");
+                int ingredientAmount = InputHandler.intInput();
+
+                recipeIngredients.put(ingredientName, ingredientAmount);
+              }
+
+              // Pass the collected data to CookBook
+              try {
+                cookBook.addRecipe(recipeName, recipeDescription, recipeIngredients, recipeInstructions);
+              } catch (IllegalArgumentException e) {
+                PrintHandler.printString(e.getMessage());
+              }
               break;
+
             case 2:
               PrintHandler.printString("What is the name of the recipe you want to remove?");
               String recipeNameRemove = InputHandler.stringInput();
-              cookBook.removeRecipe(recipeNameRemove);
+              try{
+                cookBook.removeRecipe(recipeNameRemove);
+              } catch (IllegalArgumentException e) {
+                PrintHandler.printString(e.getMessage());
+              }
               break;
+
             case 3:
               PrintHandler.printString("What is the name of the recipe you want to search for?");
-              String recipeName = InputHandler.stringInput();
-              cookBook.searchRecipe(recipeName);
+              String searchRecipeName = InputHandler.stringInput();
+              try{
+                cookBook.searchRecipe(searchRecipeName);
+              } catch (IllegalArgumentException e) {
+                PrintHandler.printString(e.getMessage());
+              }
               break;
+
             case 4:
               cookBook.showAllRecipes();
               break;
