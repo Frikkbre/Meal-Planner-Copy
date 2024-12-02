@@ -1,5 +1,6 @@
 package edu.ntnu.idi.bidata.registry;
 
+import edu.ntnu.idi.bidata.entity.Ingredient;
 import edu.ntnu.idi.bidata.entity.Recipe;
 import edu.ntnu.idi.bidata.util.InputHandler;
 import edu.ntnu.idi.bidata.util.PrintHandler;
@@ -35,7 +36,7 @@ public class CookBook {
    * Is ran from the initializeApplication method in the MealPlannerApp class.
    */
   public void addInitRecipe() {
-    HashMap<String, Integer> recipeIngredients = new HashMap<>();
+    HashMap<String, Integer> recipeIngredients = new HashMap<>(); //BOTH RECIPES USE THIS HASHMAP!!!
     recipeIngredients.put("Rice", 4);
     recipeIngredients.put("Onion", 1);
     recipeIngredients.put("Eggs", 4);
@@ -64,37 +65,20 @@ public class CookBook {
    * The user is prompted to enter the recipe name, description, ingredients, and instructions.
    * The recipe is then added to the recipe register.
    */
-  public void addRecipe() {
-
-    HashMap <String, Integer> numberOfIngredientsMap = new HashMap<>();
-
-    PrintHandler.printString(("Enter recipe name: "));
-    String recipeName = InputHandler.stringInput();
-
-    PrintHandler.printString("Enter recipe description: ");
-    String recipeDescription = InputHandler.stringInput();
-
-    PrintHandler.printString("How many ingredients does the recipe have?");
-    int numberOfIngredients = InputHandler.intInput();
-    InputHandler.stringInput();
-
-    for (int i = 0; i < numberOfIngredients; i++) {
-      PrintHandler.printString("Enter ingredient name: ");
-      String ingredientName = InputHandler.stringInput();
-      PrintHandler.printString("Enter ingredient amount: ");
-      Integer ingredientAmount = InputHandler.intInput();
-      InputHandler.stringInput();
-
-      numberOfIngredientsMap.put(ingredientName, ingredientAmount); //TODO - Ikke send hashmap, lag funksjon
+  public void addRecipe(String recipeName, String recipeDescription, HashMap<String, Integer> ingredients, String recipeInstructions) {
+    for (Recipe recipe : recipeRegister.values()) {
+      if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
+        PrintHandler.printString("Recipe already exists");
+        return;
+      }
     }
 
-    PrintHandler.printString("Enter recipe instructions: ");
-    String recipeInstructions = InputHandler.stringInput();
-
-    Recipe recipe = new Recipe(recipeName, recipeDescription, numberOfIngredientsMap, recipeInstructions);
-
+    // Create the Recipe object with the provided ingredients
+    Recipe recipe = new Recipe(recipeName, recipeDescription, ingredients, recipeInstructions);
     recipeRegister.put(recipeName, recipe);
+    PrintHandler.printString("Recipe added successfully: " + recipeName);
   }
+
 
   /**
    * Removes a recipe from the cookbook based on the recipe name.
