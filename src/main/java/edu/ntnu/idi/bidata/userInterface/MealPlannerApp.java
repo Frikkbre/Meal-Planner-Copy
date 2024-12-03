@@ -248,6 +248,16 @@ public class MealPlannerApp {
               break;
           }
           break;
+          case 3:
+            cookBook.showAllRecipes();
+            PrintHandler.printString("Which recipe do you want to cook today?");
+            String recipeName = InputHandler.stringInput();
+
+            try{
+              cookBook.cookRecipe(recipeName, foodStorage);
+            } catch (IllegalArgumentException e) {
+              PrintHandler.printString(e.getMessage());
+            }
 
         case 0:
           running = false;
