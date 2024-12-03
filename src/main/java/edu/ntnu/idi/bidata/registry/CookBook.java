@@ -36,17 +36,18 @@ public class CookBook {
    * Is ran from the initializeApplication method in the MealPlannerApp class.
    */
   public void addInitRecipe() {
-    HashMap<String, Integer> recipeIngredients = new HashMap<>(); //BOTH RECIPES USE THIS HASHMAP!!!
-    recipeIngredients.put("Rice", 4);
-    recipeIngredients.put("Onion", 1);
-    recipeIngredients.put("Eggs", 4);
-    Recipe friedRice = new Recipe("Fried Rice", "Fried rice with eggs and onion", recipeIngredients, "Cook rice, fry eggs and onion, mix together");
+    HashMap<String, Float> recipeIngredientsFriedRice = new HashMap<>(); //Does it work with float?? Write test class.
+    recipeIngredientsFriedRice.put("Rice", 1f);//liters
+    recipeIngredientsFriedRice.put("Onion", 1.0f);//pieces
+    recipeIngredientsFriedRice.put("Eggs", 4.0f);//pieces
+    Recipe friedRice = new Recipe("Fried Rice", "Fried rice with eggs and onion", recipeIngredientsFriedRice, "Cook rice, fry eggs and onion, mix together");
     recipeRegister.put(friedRice.getRecipeName(), friedRice);
 
-    recipeIngredients.put("spaghetti", 200); //Grams
-    recipeIngredients.put("meat", 400); //Grams
-    recipeIngredients.put("Bolognese sauce", 1); //Bolognese sauce
-    Recipe spaghettiBolognese = new Recipe("Spaghetti Bolognese", "Spaghetti with meat and tomato sauce", recipeIngredients, "Cook spaghetti, fry meat, add Bolognese sauce");
+    HashMap<String, Float> recipeIngredientsSpaghettiBolognese = new HashMap<>();
+    recipeIngredientsSpaghettiBolognese.put("spaghetti", 200.0f); //Grams
+    recipeIngredientsSpaghettiBolognese.put("meat", 400.0f); //Grams
+    recipeIngredientsSpaghettiBolognese.put("Bolognese sauce", 1.0f); //Bolognese sauce
+    Recipe spaghettiBolognese = new Recipe("Spaghetti Bolognese", "Spaghetti with meat and tomato sauce", recipeIngredientsSpaghettiBolognese, "Cook spaghetti, fry meat, add Bolognese sauce");
     recipeRegister.put(spaghettiBolognese.getRecipeName(), spaghettiBolognese);
 
 
@@ -66,7 +67,7 @@ public class CookBook {
    * The user is prompted to enter the recipe name, description, ingredients, and instructions.
    * The recipe is then added to the recipe register.
    */
-  public void addRecipe(String recipeName, String recipeDescription, HashMap<String, Integer> ingredients, String recipeInstructions) {
+  public void addRecipe(String recipeName, String recipeDescription, HashMap<String, Float> ingredients, String recipeInstructions) {
     for (Recipe recipe : recipeRegister.values()) {
       if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
         PrintHandler.printString("Recipe already exists");
@@ -119,6 +120,35 @@ public class CookBook {
     }
   }
 
+  /**
+   * Displays only the recipes the user has the ingredients for.
+   * Iterates over the recipe register and checks if the user has all the ingredients for each recipe.
+   * If the user has all the ingredients for the recipe, it is printed.
+   */
+  public void showAvailableRecipes(FoodStorage foodStorage) {
+    for (Recipe recipe : recipeRegister.values()) {
+      boolean hasAllIngredients = true;
+      for (String ingredientName : recipe.getRecipeIngredients().keySet()) {
+        if (!foodStorage.hasIngredient(ingredientName, recipe.getRecipeIngredients().get(ingredientName))) {
+          hasAllIngredients = false;
+          break;
+        }
+      }
+      if (hasAllIngredients) {
+        PrintHandler.printRecipe(recipe);
+      }
+    }
+  }
+
+
+  /**
+   * Cooks a recipe by removing the ingredients from the food storage.
+   * The user is prompted to enter the recipe name.
+   * The recipe is then cooked by removing the ingredients from the food storage.
+   *
+   * @param recipeName the name of the recipe to be cooked
+   * @param foodStorage the food storage to remove the ingredients from
+   */
   public void cookRecipe(String recipeName, FoodStorage foodStorage) {
     for (Recipe recipe : recipeRegister.values()) {
       if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
@@ -126,7 +156,7 @@ public class CookBook {
         PrintHandler.printString(recipe.getRecipeInstructions());
 
         for (String ingredientName : recipe.getRecipeIngredients().keySet()) {
-          foodStorage.removeIngredient(ingredientName, recipe.getRecipeIngredients().get(ingredientName)); //TODO - make it illegal to remove more than you have
+          foodStorage.removeIngredient(ingredientName, (int) recipe.getRecipeIngredients().get(ingredientName).floatValue());
         }
         break;
       }
