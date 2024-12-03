@@ -204,13 +204,13 @@ public class MealPlannerApp {
               PrintHandler.printString("How many ingredients does the recipe have?");
               int numberOfIngredients = InputHandler.intInput();
 
-              HashMap<String, Integer> recipeIngredients = new HashMap<>();
+              HashMap<String, Float> recipeIngredients = new HashMap<>();
               for (int i = 0; i < numberOfIngredients; i++) {
                 PrintHandler.printString("Enter ingredient name: ");
                 String ingredientName = InputHandler.stringInput();
 
                 PrintHandler.printString("Enter ingredient amount: ");
-                int ingredientAmount = InputHandler.intInput();
+                Float ingredientAmount = InputHandler.floatInput();
 
                 recipeIngredients.put(ingredientName, ingredientAmount);
               }
@@ -246,10 +246,13 @@ public class MealPlannerApp {
             case 4:
               cookBook.showAllRecipes();
               break;
+
+            case 5:
+              cookBook.showAvailableRecipes(foodStorage);
           }
           break;
           case 3:
-            cookBook.showAllRecipes();
+            cookBook.showAvailableRecipes(foodStorage);
             PrintHandler.printString("Which recipe do you want to cook today?");
             String recipeName = InputHandler.stringInput();
 
@@ -258,6 +261,9 @@ public class MealPlannerApp {
             } catch (IllegalArgumentException e) {
               PrintHandler.printString(e.getMessage());
             }
+            PrintHandler.printString("Enjoy your meal!");
+            PrintHandler.printString("");
+            break;
 
         case 0:
           running = false;
