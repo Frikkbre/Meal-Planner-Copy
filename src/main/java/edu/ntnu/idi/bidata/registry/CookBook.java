@@ -54,6 +54,7 @@ public class CookBook {
 
   /**
    * Returns the recipe register.
+   *
    * @return the recipe register
    */
   public HashMap<String, Recipe> getRecipeRegister() {
@@ -74,7 +75,7 @@ public class CookBook {
     }
 
     // Create the Recipe object with the provided ingredients
-    Recipe recipe = new Recipe(recipeName, recipeDescription, ingredients, recipeInstructions);
+    Recipe recipe = new Recipe(recipeName, recipeDescription, ingredients, recipeInstructions); //TODO - Make it use map.copyOf() to avoid reference issues and move to MealPlannerApp
     recipeRegister.put(recipeName, recipe);
     PrintHandler.printString("Recipe added successfully: " + recipeName);
   }
@@ -117,4 +118,19 @@ public class CookBook {
       PrintHandler.printRecipe(recipeRegister);
     }
   }
+
+  public void cookRecipe(String recipeName, FoodStorage foodStorage) {
+    for (Recipe recipe : recipeRegister.values()) {
+      if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
+        PrintHandler.printString("Cooking " + recipeName);
+        PrintHandler.printString(recipe.getRecipeInstructions());
+
+        for (String ingredientName : recipe.getRecipeIngredients().keySet()) {
+          foodStorage.removeIngredient(ingredientName, recipe.getRecipeIngredients().get(ingredientName)); //TODO - make it illegal to remove more than you have
+        }
+        break;
+      }
+    }
+  }
+
 }
