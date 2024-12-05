@@ -1,6 +1,8 @@
 package edu.ntnu.idi.bidata.entity;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The {@code Recipe} class is responsible for creating recipe.
@@ -15,8 +17,9 @@ import java.util.HashMap;
 public class Recipe {
   private String recipeName;
   private String recipeDescription;
-  private HashMap <String, Integer> recipeIngredients = new HashMap<>();
+  private HashMap <String, Float> recipeIngredients = new HashMap<>();
   private String recipeInstructions;
+  private int intendedForAmountOfPeople;
 
   /**
    * returns the name of the recipe
@@ -67,8 +70,8 @@ public class Recipe {
    * returns the ingredients of the recipe
    * @return the ingredients of the recipe
    */
-  public HashMap <String, Integer> getRecipeIngredients() {
-    return recipeIngredients;
+  public Map<String, Float> getRecipeIngredients() {
+    return Collections.unmodifiableMap(recipeIngredients);
   }
 
   /**
@@ -81,13 +84,13 @@ public class Recipe {
    *
    * @param recipeIngredients
    */
-  public void setRecipeIngredients(HashMap<String, Integer> recipeIngredients) {
+  public void setRecipeIngredients(HashMap<String, Float> recipeIngredients) {
     if (recipeIngredients == null || recipeIngredients.isEmpty() ||
         recipeIngredients.containsKey(null) || recipeIngredients.containsValue(null)) {
       throw new IllegalArgumentException("Recipe ingredients cannot be null or empty");
     }
 
-    for (Integer amount : recipeIngredients.values()) {
+    for (Float amount : recipeIngredients.values()) {
       if (amount < 0) {
         throw new IllegalArgumentException("Ingredient amount cannot be negative");
       }
@@ -118,6 +121,17 @@ public class Recipe {
     }
   }
 
+  public int getIntendedForAmountOfPeople() {
+    return intendedForAmountOfPeople;
+  }
+
+  public void setIntendedForAmountOfPeople(int intendedForAmountOfPeople) {
+    if (intendedForAmountOfPeople <= 0) {
+      throw new IllegalArgumentException("Intended for amount of people cannot be less than or equal to 0");
+    }
+    this.intendedForAmountOfPeople = intendedForAmountOfPeople;
+  }
+
   /**
    * Constructor for the Recipe class
    * Used to create a new recipe
@@ -127,10 +141,11 @@ public class Recipe {
    * @param recipeIngredients
    * @param recipeInstructions
    */
-  public Recipe(String recipeName, String recipeDescription, HashMap recipeIngredients, String recipeInstructions) {
+  public Recipe(String recipeName, String recipeDescription, HashMap recipeIngredients, String recipeInstructions, int intendedForAmountOfPeople) {
     this.recipeName = recipeName;
     this.recipeDescription = recipeDescription;
     this.recipeIngredients = recipeIngredients;
     this.recipeInstructions = recipeInstructions;
+    this.intendedForAmountOfPeople = intendedForAmountOfPeople;
   }
 }
