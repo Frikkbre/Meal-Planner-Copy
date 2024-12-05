@@ -28,6 +28,7 @@ public class PrintHandler {
     System.out.println("What do you want to do?");
     System.out.println("1 = ingredient menu");
     System.out.println("2 = recipe menu");
+    System.out.println("3 = cooking menu");
     System.out.println("0 = exit the program");
   }
 
@@ -59,6 +60,7 @@ public class PrintHandler {
     System.out.println("2 = remove recipe");
     System.out.println("3 = search recipe");
     System.out.println("4 = Show recipes");
+    System.out.println("5 = Show avalible recipes");
   }
 
 
@@ -112,6 +114,7 @@ public class PrintHandler {
       System.out.println(ingredient + ": " + recipe.getRecipeIngredients().get(ingredient));
     }
     System.out.println("Instructions: " + recipe.getRecipeInstructions());
+    System.out.println("Intended for: " + recipe.getIntendedForAmountOfPeople() + " people");
     System.out.println("-------------------");
     System.out.println();
   }
