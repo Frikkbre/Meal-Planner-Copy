@@ -204,6 +204,9 @@ public class MealPlannerApp {
               PrintHandler.printString("How many ingredients does the recipe have?");
               int numberOfIngredients = InputHandler.intInput();
 
+              PrintHandler.printString("How many people is the recipe intended for?");
+              int intendedForAmountOfPeople = InputHandler.intInput();
+
               HashMap<String, Float> recipeIngredients = new HashMap<>();
               for (int i = 0; i < numberOfIngredients; i++) {
                 PrintHandler.printString("Enter ingredient name: ");
@@ -217,7 +220,7 @@ public class MealPlannerApp {
 
               // Pass the collected data to CookBook
               try {
-                cookBook.addRecipe(recipeName, recipeDescription, recipeIngredients, recipeInstructions);
+                cookBook.addRecipe(recipeName, recipeDescription, recipeIngredients, recipeInstructions, intendedForAmountOfPeople);
               } catch (IllegalArgumentException e) {
                 PrintHandler.printString(e.getMessage());
               }

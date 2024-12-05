@@ -40,14 +40,14 @@ public class CookBook {
     recipeIngredientsFriedRice.put("Rice", 1f);//liters
     recipeIngredientsFriedRice.put("Onion", 1.0f);//pieces
     recipeIngredientsFriedRice.put("Eggs", 4.0f);//pieces
-    Recipe friedRice = new Recipe("Fried Rice", "Fried rice with eggs and onion", recipeIngredientsFriedRice, "Cook rice, fry eggs and onion, mix together");
+    Recipe friedRice = new Recipe("Fried Rice", "Fried rice with eggs and onion", recipeIngredientsFriedRice, "Cook rice, fry eggs and onion, mix together", 4);
     recipeRegister.put(friedRice.getRecipeName(), friedRice);
 
     HashMap<String, Float> recipeIngredientsSpaghettiBolognese = new HashMap<>();
     recipeIngredientsSpaghettiBolognese.put("spaghetti", 200.0f); //Grams
     recipeIngredientsSpaghettiBolognese.put("meat", 400.0f); //Grams
     recipeIngredientsSpaghettiBolognese.put("Bolognese sauce", 1.0f); //Bolognese sauce
-    Recipe spaghettiBolognese = new Recipe("Spaghetti Bolognese", "Spaghetti with meat and tomato sauce", recipeIngredientsSpaghettiBolognese, "Cook spaghetti, fry meat, add Bolognese sauce");
+    Recipe spaghettiBolognese = new Recipe("Spaghetti Bolognese", "Spaghetti with meat and tomato sauce", recipeIngredientsSpaghettiBolognese, "Cook spaghetti, fry meat, add Bolognese sauce", 4);
     recipeRegister.put(spaghettiBolognese.getRecipeName(), spaghettiBolognese);
 
 
@@ -67,7 +67,7 @@ public class CookBook {
    * The user is prompted to enter the recipe name, description, ingredients, and instructions.
    * The recipe is then added to the recipe register.
    */
-  public void addRecipe(String recipeName, String recipeDescription, HashMap<String, Float> ingredients, String recipeInstructions) {
+  public void addRecipe(String recipeName, String recipeDescription, HashMap<String, Float> ingredients, String recipeInstructions, int intendedForAmountOfPeople) {
     for (Recipe recipe : recipeRegister.values()) {
       if (recipe.getRecipeName().equalsIgnoreCase(recipeName)) {
         PrintHandler.printString("Recipe already exists");
@@ -76,7 +76,7 @@ public class CookBook {
     }
 
     // Create the Recipe object with the provided ingredients
-    Recipe recipe = new Recipe(recipeName, recipeDescription, ingredients, recipeInstructions); //TODO - Make it use map.copyOf() to avoid reference issues and move to MealPlannerApp
+    Recipe recipe = new Recipe(recipeName, recipeDescription, ingredients, recipeInstructions, intendedForAmountOfPeople); //TODO - Make it use map.copyOf() to avoid reference issues and move to MealPlannerApp
     recipeRegister.put(recipeName, recipe);
     PrintHandler.printString("Recipe added successfully: " + recipeName);
   }
