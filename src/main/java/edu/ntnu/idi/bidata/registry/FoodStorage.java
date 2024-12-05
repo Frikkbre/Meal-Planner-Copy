@@ -38,7 +38,7 @@ public class FoodStorage {
      * Is ran from the initializeApplication method in the MealPlannerApp class.
      */
     public void addInitIngredient() {
-        Ingredient bellPepper = new Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 12, 24);
+        /*Ingredient bellPepper = new Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 12, 24);
         Ingredient tomato = new Ingredient("Tomato", "Vegetable", 14.90f, 5, 4, 2024, 12, 31);
         Ingredient onion = new Ingredient("Onion", "Vegetable", 9.90f, 5, 4, 2024, 12, 30);
         Ingredient garlic = new Ingredient("Garlic", "Vegetable", 9.90f, 5, 4, 2024, 10, 11);
@@ -48,7 +48,27 @@ public class FoodStorage {
         foodRegister.put("tomato", tomato);
         foodRegister.put("onion", onion);
         foodRegister.put("garlic", garlic);
-        foodRegister.put("milk", milk);
+        foodRegister.put("milk", milk);*/
+
+        Ingredient rice = new Ingredient("Rice", "Rice", 19.90f, 3f, 3, 2024, 12, 24);
+        Ingredient onion = new Ingredient("Onion", "Vegetable", 9.90f, 3.0f, 3, 2024, 12, 30);
+        Ingredient eggs = new Ingredient("Eggs", "Eggs", 14.90f, 12.0f, 4, 2024, 12, 31);
+
+        foodRegister.put("rice", rice);
+        foodRegister.put("onion", onion);
+        foodRegister.put("eggs", eggs);
+    }
+
+    /**
+     * Checks if the food storage has the specified ingredient in the required amount.
+     *
+     * @param ingredientName the name of the ingredient
+     * @param requiredAmount the required amount of the ingredient
+     * @return true if the ingredient is available in the required amount, false otherwise
+     */
+    public boolean hasIngredient(String ingredientName, Float requiredAmount) {
+        Ingredient ingredient = foodRegister.get(ingredientName.toLowerCase());
+        return ingredient != null && ingredient.getIngredientAmount() >= requiredAmount;
     }
 
     /**
@@ -119,19 +139,6 @@ public class FoodStorage {
         }
     }
 
-    /**
-     * Removes an ingredient from the food storage based on its name.
-     *
-     * @param ingredientName the name of the ingredient to be removed
-     */
-    public void removeIngredient(String ingredientName) {
-        if (foodRegister.containsKey(ingredientName)) {
-            foodRegister.remove(ingredientName);
-            PrintHandler.printString("Ingredient removed");
-        } else {
-            PrintHandler.printString("Ingredient not found");
-        }
-    }
 
     /**
      * Displays all ingredients in the food storage.
@@ -152,10 +159,17 @@ public class FoodStorage {
      * @param searchDate the date to compare against the expiration date
      */
     public void showExpiredIngredients(LocalDate searchDate) {
+        float expiredIngredientsValue = 0f;
         for (Ingredient ingredient : foodRegister.values()) {
             if (ingredient.getIngredientExpirationDate().isBefore(searchDate)) {
+                expiredIngredientsValue += (ingredient.getIngredientAmount() * ingredient.getIngredientPrice());
                 PrintHandler.printIngredient(ingredient);
+
             }
         }
+        if(expiredIngredientsValue > 0){
+            PrintHandler.printString("value of expired ingredients: " + expiredIngredientsValue);
+        }
+        PrintHandler.printString("No expired ingredients found");
     }
 }
