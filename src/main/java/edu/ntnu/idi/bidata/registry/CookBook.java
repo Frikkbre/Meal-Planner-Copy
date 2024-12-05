@@ -5,9 +5,7 @@ import edu.ntnu.idi.bidata.entity.Recipe;
 import edu.ntnu.idi.bidata.util.InputHandler;
 import edu.ntnu.idi.bidata.util.PrintHandler;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * The {@code CookBook} class is responsible for managing a collection of recipes.
@@ -30,6 +28,10 @@ public class CookBook {
 
   public CookBook(InputHandler inputHandler) {
   }
+
+  public Map<String, Recipe> getRecipeRegistry(){
+    return Collections.unmodifiableMap(recipeRegister);
+}
 
   /**
    * Adds initial recipes to the cookbook.
