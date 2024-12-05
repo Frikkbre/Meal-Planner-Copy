@@ -130,7 +130,7 @@ public class FoodStorage {
             if (ingredientIterated.getIngredientName().equalsIgnoreCase(ingredientName)) {
                 PrintHandler.searchIngredientPrint(ingredientIterated);
                 found = true;
-                break; // TODO - is this nessesary?
+                break;
             }
         }
         //If the ingredient is not found, print a message
@@ -144,13 +144,18 @@ public class FoodStorage {
      * Displays all ingredients in the food storage.
      */
     public void showSortedIngredients() { //TODO - use stream instead?
+        float ingredientsValue = 0f;
         List<String> sortedKeys = new ArrayList<>(foodRegister.keySet());
         Collections.sort(sortedKeys);
 
         for (String key : sortedKeys) {
             Ingredient ingredient = foodRegister.get(key);
             PrintHandler.printIngredient(ingredient);
+            ingredientsValue += (ingredient.getIngredientAmount() * ingredient.getIngredientPrice());
         }
+        if(ingredientsValue >= 0){
+            PrintHandler.printString("value of ingredients: " + ingredientsValue);
+        }else PrintHandler.printString("No ingredients found");
     }
 
     /**
@@ -167,9 +172,8 @@ public class FoodStorage {
 
             }
         }
-        if(expiredIngredientsValue > 0){
+        if(expiredIngredientsValue >= 0){
             PrintHandler.printString("value of expired ingredients: " + expiredIngredientsValue);
-        }
-        PrintHandler.printString("No expired ingredients found");
+        }else PrintHandler.printString("No expired ingredients found");
     }
 }
