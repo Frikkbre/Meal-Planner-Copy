@@ -5,6 +5,7 @@ import edu.ntnu.idi.bidata.entity.Recipe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,9 +17,13 @@ public class RecipeTest {
   void setUp(){
     String recipeName = "Pancakes";
     String recipeDescription = "Delicious pancakes";
-    String recipeIngredients = "Flour" + "milk" + "eggs";
+    HashMap<String, Float> recipeIngredients = new HashMap<>();
+    recipeIngredients.put("Flour", 200f);
+    recipeIngredients.put("Milk", 300f);
+    recipeIngredients.put("Eggs", 2f);
     String recipeInstructions = "Mix all ingredients together and fry in a pan";
-    recipe = new Recipe(recipeName, recipeDescription, recipeIngredients, recipeInstructions);
+    int intendedForAmountOfPeople = 4;
+    recipe = new Recipe(recipeName, recipeDescription, recipeIngredients, recipeInstructions, intendedForAmountOfPeople);
   }
 
   @Test
@@ -51,15 +56,24 @@ public class RecipeTest {
 
   @Test
   void setRecipeIngredientsTestForPositiveValues() {
-    String recipeIngredients = "Flour" + "milk" + "eggs";
+    HashMap<String, Float> recipeIngredients = new HashMap<>();
+    recipeIngredients.put("Flour", 200.0f);
+    recipeIngredients.put("Milk", 300.0f);
+    recipeIngredients.put("Eggs", 2.0f);
     recipe.setRecipeIngredients(recipeIngredients);
     assertEquals(recipeIngredients, recipe.getRecipeIngredients());
   }
 
   @Test
   void setRecipeIngredientsTestForNegativeValues() {
-    assertThrows(IllegalArgumentException.class, () -> recipe.setRecipeIngredients(null));
-    assertThrows(IllegalArgumentException.class, () -> recipe.setRecipeIngredients(""));
+    HashMap<String, Float> recipeIngredients = new HashMap<>();
+    recipeIngredients.put("", 200f);
+    recipeIngredients.put("Milk", null);
+    recipeIngredients.put(null, 2f);
+    recipeIngredients.put("Eggs", -1f);
+
+    assertThrows(IllegalArgumentException.class, () -> recipe.setRecipeIngredients(recipeIngredients));
+    assertThrows(IllegalArgumentException.class, () -> recipe.setRecipeIngredients(recipeIngredients));
   }
 
   @Test
@@ -73,6 +87,19 @@ public class RecipeTest {
   void setRecipeInstructionsTestForNegativeValues() {
     assertThrows(IllegalArgumentException.class, () -> recipe.setRecipeInstructions(null));
     assertThrows(IllegalArgumentException.class, () -> recipe.setRecipeInstructions(""));
+  }
+
+  @Test
+  void setIntendedForAmountOfPeopleTestForPositiveValues() {
+    int intendedForAmountOfPeople = 4;
+    recipe.setIntendedForAmountOfPeople(intendedForAmountOfPeople);
+    assertEquals(intendedForAmountOfPeople, recipe.getIntendedForAmountOfPeople());
+  }
+
+  @Test
+  void setIntendedForAmountOfPeopleTestForNegativeValues() {
+    assertThrows(IllegalArgumentException.class, () -> recipe.setIntendedForAmountOfPeople(0));
+    assertThrows(IllegalArgumentException.class, () -> recipe.setIntendedForAmountOfPeople(-1));
   }
 
 
