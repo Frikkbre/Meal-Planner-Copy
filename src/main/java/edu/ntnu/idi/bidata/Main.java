@@ -11,11 +11,6 @@ public class Main {
 
   private Main() {
     MealPlannerApp mealPlannerApp = new MealPlannerApp();
-    //try{ //TODO - refactor this to a proper exception handling
-    //  MealPlannerApp mealPlannerApp = new MealPlannerApp();
-    //} catch (Exception e) {
-    //  System.out.println("An error occurred: " + e.getMessage());
-    //}
   }
 
   /**
