@@ -38,18 +38,6 @@ public class FoodStorage {
      * Is ran from the initializeApplication method in the MealPlannerApp class.
      */
     public void addInitIngredient() {
-        /*Ingredient bellPepper = new Ingredient("Bell Pepper", "Vegetable", 19.90f, 5, 4, 2024, 12, 24);
-        Ingredient tomato = new Ingredient("Tomato", "Vegetable", 14.90f, 5, 4, 2024, 12, 31);
-        Ingredient onion = new Ingredient("Onion", "Vegetable", 9.90f, 5, 4, 2024, 12, 30);
-        Ingredient garlic = new Ingredient("Garlic", "Vegetable", 9.90f, 5, 4, 2024, 10, 11);
-        Ingredient milk = new Ingredient("Milk", "Dairy", 14.90f, 5, 3, 2024, 11, 22);
-
-        foodRegister.put("bell pepper", bellPepper);
-        foodRegister.put("tomato", tomato);
-        foodRegister.put("onion", onion);
-        foodRegister.put("garlic", garlic);
-        foodRegister.put("milk", milk);*/
-
         Ingredient rice = new Ingredient("Rice", "Rice", 19.90f, 3f, 3, 2024, 12, 24);
         Ingredient onion = new Ingredient("Onion", "Vegetable", 9.90f, 3.0f, 3, 2024, 12, 30);
         Ingredient eggs = new Ingredient("Eggs", "Eggs", 14.90f, 12.0f, 4, 2024, 12, 31);
@@ -75,7 +63,7 @@ public class FoodStorage {
      * Adds a new ingredient to the food storage.
      * If the ingredient already exists in the storage, the amount is increased.
      */
-    public void addIngredient(Ingredient newIngredient) { // newIngredient) {
+    public void addIngredient(Ingredient newIngredient) {
             String lowerCaseIngredientName = newIngredient.getIngredientName().toLowerCase();
 
             if (foodRegister.containsKey(lowerCaseIngredientName)) {
@@ -110,7 +98,7 @@ public class FoodStorage {
                 existingIngredient.setIngredientAmount(
                     existingIngredient.getIngredientAmount() - amountToRemove
                 );
-                PrintHandler.printString(amountToRemove + " units of " + lowerCaseIngredientName + " have been removed."); //TODO - Make units dynamic.
+                PrintHandler.printString(amountToRemove + " units of " + lowerCaseIngredientName + " have been removed.");
             }
         } else {
             PrintHandler.printString("Ingredient not found: " + lowerCaseIngredientName);
@@ -133,7 +121,6 @@ public class FoodStorage {
                 break;
             }
         }
-        //If the ingredient is not found, print a message
         if (!found) {
             PrintHandler.printString("Ingredient not found");
         }
@@ -143,7 +130,7 @@ public class FoodStorage {
     /**
      * Displays all ingredients in the food storage.
      */
-    public void showSortedIngredients() { //TODO - use stream instead?
+    public void showSortedIngredients() {
         float ingredientsValue = 0f;
         List<String> sortedKeys = new ArrayList<>(foodRegister.keySet());
         Collections.sort(sortedKeys);
