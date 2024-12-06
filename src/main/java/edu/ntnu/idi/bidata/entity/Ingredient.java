@@ -154,8 +154,8 @@ public class Ingredient {
    *
    * @param ingredientIsExpired boolean value of if ingredient is expired
    */
-  public void setIngredientIsExpired(boolean ingredientIsExpired, LocalDate ingredientExpirationDate) { //TODO - make this method work. Is never called?
-    if (ingredientExpirationDate.isBefore(LocalDate.now())) {        //TODO - move this to setIngredientExpirationDate?
+  public void setIngredientIsExpired(boolean ingredientIsExpired, LocalDate ingredientExpirationDate) {
+    if (ingredientExpirationDate.isBefore(LocalDate.now())) {
       this.ingredientIsExpired = true;
     }
     else if (ingredientExpirationDate.isAfter(LocalDate.now())) {
@@ -163,8 +163,6 @@ public class Ingredient {
     }
   }
 
-
-//TODO - Getters not showing up in javadoc
 
   /**
    * returns name of ingredient
