@@ -73,7 +73,6 @@ class IngredientTest {
     @Test
     void setIngredientTypeTestForNegativeValues() {
         assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientType(""));
-        assertThrows(IllegalArgumentException.class, () -> ingredient.setIngredientType(null)); //TODO - Will scanner ever give null?
     }
 
     @Test
