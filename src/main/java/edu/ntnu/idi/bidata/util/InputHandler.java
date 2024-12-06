@@ -17,11 +17,12 @@ public class InputHandler {
    * Method for handling integer input.
    * @return
    */
-  public static int intInput() { //TODO - Add exception handling
-    int input = inputScanner.nextInt();
-    inputScanner.nextLine();
-
-    return input;
+  public static int intInput() {
+    String input = inputScanner.nextLine();
+    if (input.matches(".*[a-zA-Z].*")) {
+      throw new IllegalArgumentException("Input contains letters");
+    }
+    return Integer.parseInt(input);
   }
 
   /**
@@ -29,17 +30,23 @@ public class InputHandler {
    * @return
    */
   public static String stringInput(){ //TODO - Add exception handling
-    return inputScanner.nextLine();
+    String input = inputScanner.nextLine();
+    if (input.matches(".*\\d.*")) {
+      throw new IllegalArgumentException("Input contains numbers");
+    }
+    return input;
+
   }
 
   /**
    * Method for handling float input.
    * @return
    */
-  public static Float floatInput(){
-    float input = inputScanner.nextFloat();
-    inputScanner.nextLine();
-
-    return input;
+  public static Float floatInput() {
+    String input = inputScanner.nextLine();
+    if (input.matches(".*[a-zA-Z].*")) {
+      throw new IllegalArgumentException("Input contains letters");
+    }
+    return Float.parseFloat(input);
   }
 }
