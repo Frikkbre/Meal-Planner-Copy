@@ -18,6 +18,21 @@ The user remains in controll of tjhe inventory, and can add and remove ingredien
 
 [//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
 
+The project is structured in the following way:
+- The main class is `main.java`
+- The startApplication method is in `MealPlanner.java`
+- The source files are stored in the `src/java/edu/ntnu/idi/bidata/` directory
+- From here they are stored in different packages
+  - `Main.java` is in `bidata/`
+  - `entity` contains the classes `Recipe.java` and `Ingredient.java`
+  - `registr` contains the classes `CookBook.java` and `FoodStorage.java`
+  - `userinterface` contains the class `MealPlannerApp.java`
+  - `util` contains the classes `InputHandler.java` and `PrintHandler.java`
+
+- The JUnit-test classes are stored in the `src/java/edu/ntnu/idi/bidata/` directory
+
+
+
 ## Link to repository
 
 [//]: # (TODO: Is this the correct link?)
@@ -31,6 +46,8 @@ https://github.com/Frikkbre/Mealplanner-rapport.git
 
 [//]: # (TODO: Describe how to run your project here. What is the main class? What is the main method?
 What is the input and output of the program? What is the expected behaviour of the program?)
+
+To run the program, either download the project and run it in your IDE, or clone the repository and run it in your IDE.
 
 ## How to run the tests
 
