@@ -32,15 +32,9 @@ The project is structured in the following way:
 - The JUnit-test classes are stored in the `src/java/edu/ntnu/idi/bidata/` directory
 
 
-
-## Link to repository
-
-[//]: # (TODO: Is this the correct link?)
-https://github.com/NTNU-BIDATA-IDATG1003-2024/meal-planning-Frikkbre.git
-
 ## Link to report repository
 
-https://github.com/Frikkbre/Mealplanner-rapport.git
+<a href="https://github.com/Frikkbre/Mealplanner-rapport.git">Link to report repository</a>
 
 ## How to run the project
 
@@ -57,3 +51,5 @@ To run the program, either download the project and run it in your IDE, or clone
 
 [//]: # (TODO: Include references here, if any. For example, if you have used code from the course book, include a reference to the chapter.
 Or if you have used code from a website or other source, include a link to the source.)
+
+<a href="https://junit.org/junit5/docs/current/api/">JUnit</a>
