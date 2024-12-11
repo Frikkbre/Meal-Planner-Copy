@@ -28,7 +28,7 @@ public class FoodStorage {
 
     Scanner inputScanner = new Scanner(System.in);
 
-    public FoodStorage(MealPlannerApp mealPlannerApp) {
+    public FoodStorage() {
 
     }
 

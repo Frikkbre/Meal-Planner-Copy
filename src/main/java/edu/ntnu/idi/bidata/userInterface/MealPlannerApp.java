@@ -28,7 +28,7 @@ public class MealPlannerApp {
 
   public MealPlannerApp() {
     Scanner inputScanner = new Scanner(System.in);
-    FoodStorage foodStorage = new FoodStorage(this);
+    FoodStorage foodStorage = new FoodStorage();
     CookBook cookBook = new CookBook(inputHandler);
     this.inputHandler = new InputHandler(inputScanner);
     boolean running = true;
