@@ -34,7 +34,7 @@ public class Recipe {
    * sets the name of the recipe and checks for illegal arguments
    * Illegal arguments are null or empty strings
    *
-   * @param recipeName
+   * @param recipeName the name of the recipe
    */
   public void setRecipeName(String recipeName) {
     if (recipeName == null || recipeName.isEmpty()) {
@@ -56,7 +56,7 @@ public class Recipe {
    * sets the description of the recipe and checks for illegal arguments
    * Illegal arguments are null or empty strings
    *
-   * @param recipeDescription
+   * @param recipeDescription the description of the recipe
    */
   public void setRecipeDescription(String recipeDescription) {
     if(recipeDescription == null || recipeDescription.isEmpty()){
@@ -82,7 +82,7 @@ public class Recipe {
    *   if it is, it throws an IllegalArgumentException
    *</p>
    *
-   * @param recipeIngredients
+   * @param recipeIngredients  the ingredients of the recipe
    */
   public void setRecipeIngredients(HashMap<String, Float> recipeIngredients) {
     if (recipeIngredients == null || recipeIngredients.isEmpty() ||
@@ -111,7 +111,7 @@ public class Recipe {
    * sets the instructions of the recipe and checks for illegal arguments
    * Illegal arguments are null or empty strings
    *
-   * @param recipeInstructions
+   * @param recipeInstructions the instructions of the recipe
    */
   public void setRecipeInstructions(String recipeInstructions) {
     if(recipeInstructions == null || recipeInstructions.isEmpty()){
@@ -136,10 +136,10 @@ public class Recipe {
    * Constructor for the Recipe class
    * Used to create a new recipe
    *
-   * @param recipeName
-   * @param recipeDescription
-   * @param recipeIngredients
-   * @param recipeInstructions
+   * @param recipeName the name of the recipe
+   * @param recipeDescription the description of the recipe
+   * @param recipeIngredients the ingredients of the recipe
+   * @param recipeInstructions the instructions of the recipe
    */
   public Recipe(String recipeName, String recipeDescription, HashMap recipeIngredients, String recipeInstructions, int intendedForAmountOfPeople) {
     this.recipeName = recipeName;
