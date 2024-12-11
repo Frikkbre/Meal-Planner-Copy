@@ -7,7 +7,7 @@ public class InputHandler {
 
   /**
    * Constructor for the InputHandler class.
-   * @param inputScanner
+   * @param inputScanner Scanner
    */
   public InputHandler(Scanner inputScanner) {
     this.inputScanner = inputScanner;
@@ -15,7 +15,7 @@ public class InputHandler {
 
   /**
    * Method for handling integer input.
-   * @return
+   * @return int
    */
   public static int intInput() {
     String input = inputScanner.nextLine();
@@ -27,7 +27,7 @@ public class InputHandler {
 
   /**
    * Method for handling string input.
-   * @return
+   * @return String
    */
   public static String stringInput(){ //TODO - Add exception handling
     String input = inputScanner.nextLine();
@@ -40,7 +40,7 @@ public class InputHandler {
 
   /**
    * Method for handling float input.
-   * @return
+   * @return Float
    */
   public static Float floatInput() {
     String input = inputScanner.nextLine();
