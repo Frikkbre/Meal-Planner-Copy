@@ -47,9 +47,15 @@ To run the program, either download the project and run it in your IDE, or clone
 
 [//]: # (TODO: Describe how to run the tests here.)
 
+Navigate to the test folder in the project, and run the tests from there. The tests are run by right clicking the test class and selecting "Run 'TestClassName'".
+
 ## References
 
 [//]: # (TODO: Include references here, if any. For example, if you have used code from the course book, include a reference to the chapter.
 Or if you have used code from a website or other source, include a link to the source.)
 
 <a href="https://junit.org/junit5/docs/current/api/">JUnit</a>
+<br>
+<a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">JavaDoc Oracle</a>
+<br>
+Objects first with java, A practical introduction using BlueJ, David J. Barnes and Michael Kolling, 6th edition, 2016
