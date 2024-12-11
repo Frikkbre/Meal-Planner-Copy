@@ -24,18 +24,14 @@ import java.util.Scanner;
  */
 public class MealPlannerApp {
 
-  private Scanner inputScanner;
-  private FoodStorage foodStorage;
-  private CookBook cookBook;
   private InputHandler inputHandler;
-  private boolean running;
 
   public MealPlannerApp() {
-    this.inputScanner = new Scanner(System.in);
-    this.foodStorage = new FoodStorage(this);
-    this.cookBook = new CookBook(inputHandler);
+    Scanner inputScanner = new Scanner(System.in);
+    FoodStorage foodStorage = new FoodStorage(this);
+    CookBook cookBook = new CookBook(inputHandler);
     this.inputHandler = new InputHandler(inputScanner);
-    this.running = true;
+    boolean running = true;
 
     initializeApplication(foodStorage, cookBook, this);
     startApplication(this, inputScanner, foodStorage, cookBook, running);
