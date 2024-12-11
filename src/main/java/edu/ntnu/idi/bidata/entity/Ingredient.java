@@ -14,21 +14,21 @@ import java.time.LocalDate;
  * <p>
  * ingredientType, Type String because it holds a text description of type.
  * <p>
- * ingredientPrice, Type float because it holds deciamals for price.
- * Float is used because the prices wont be high enough to need for example double.
+ * ingredientPrice, Type float because it holds decimals for price.
+ * Float is used because the prices won´t be high enough to need for example double.
  * <p>
- * ingredientAmout, Type float because the program needs
+ * ingredientAmount, Type float because the program needs
  * to be flexible when you use for example half the milk.
  *
  *
  * <p>
- * ingredientUnit, Type enum because it should once have a number of predetermined choices..
+ * ingredientUnit, Type enum because it should once have a number of predetermined choices.
  * <p>
- * ingredientExpirationDate, Type LocalDate beacuse it uses
- * the Class LacalDate to format dates and use LocalDate.now()
+ * ingredientExpirationDate, Type LocalDate because it uses
+ * the Class LocalDate to format dates and use LocalDate.now()
  *
  * <p>
- * ingredientIsExpired, Type boolean because it need to return either true or false.
+ * ingredientIsExpired, Type boolean because it needs to return either true or false.
  * @author Frikk Brændsrød
  * @since 20.10.24
  * @version 0.0.2
@@ -59,7 +59,7 @@ public class Ingredient {
    * @param ingredientName the name of the ingredient
    */
   public void setIngredientName(String ingredientName) {
-    if (ingredientName == null || ingredientName.isBlank() || ingredientName.isEmpty()) {
+    if (ingredientName == null || ingredientName.isBlank()) {
       throw new IllegalArgumentException("Ingredient name cannot be empty");
     }
     this.ingredientName = ingredientName;
@@ -73,7 +73,7 @@ public class Ingredient {
    */
 
   public void setIngredientType(String ingredientType) {
-    if (ingredientType.isBlank() || ingredientType.isEmpty()) {
+    if (ingredientType.isBlank()) {
       throw new IllegalArgumentException("Ingredient type cannot be empty");
     }
     this.ingredientType = ingredientType;
@@ -150,7 +150,7 @@ public class Ingredient {
   }
 
   /**
-   * Sets ingredient is expired boolean with todays date and input date.
+   * Sets ingredient is expired boolean with today´s date and input date.
    *
    * @param ingredientIsExpired boolean value of if ingredient is expired
    */
@@ -221,7 +221,7 @@ public class Ingredient {
   /**
    * returns if ingredient is expired
    *
-   * @return true or false based on expirqtion date
+   * @return true or false based on expiration date
    */
   public boolean getIngredientIsExpired() {
     this.setIngredientIsExpired(false, ingredientExpirationDate);
