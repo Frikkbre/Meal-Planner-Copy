@@ -4,6 +4,9 @@ import edu.ntnu.idi.bidata.registry.FoodStorage;
 
 import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertTrue;
 
 public class FoodStorageTest {
 
@@ -26,4 +29,14 @@ public class FoodStorageTest {
 
     assertTrue(result);
   }*/
+
+  @Test
+  public void test_has_sufficient_ingredient_amount() {
+    Ingredient ingredient = new Ingredient("milk", "dairy", 20.0f, 2.0f, 3, 2024, 12, 31);
+    foodStorage.addIngredient(ingredient);
+
+    boolean result = foodStorage.hasIngredient("milk", 1.5f);
+
+    assertTrue(result);
+  }
 }

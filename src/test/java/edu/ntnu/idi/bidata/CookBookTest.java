@@ -84,45 +84,4 @@ public class CookBookTest {
     cookBook.addRecipe(recipeName2, recipeDescription2, recipeIngredients2, recipeInstructions2, intendedForAmountOfPeople2);
     assertEquals(1, cookBook.showAllRecipes());
   }
-
-  /*@Test
-  void testShowAvailableRecipes() { //TODO - test gets stuck in infinite loop
-    CookBook cookBook = new CookBook(new InputHandler(new Scanner(System.in)));
-    FoodStorage foodStorage = new FoodStorage(new MealPlannerApp());
-
-    HashMap<String, Float> ingredients = new HashMap<>();
-    ingredients.put("rice", 2.0f);
-    ingredients.put("eggs", 4.0f);
-
-    cookBook.addRecipe("Fried Rice", "Simple fried rice", ingredients, "Cook rice and eggs", 2);
-
-    foodStorage.addIngredient(new Ingredient("Rice", "Rice", 19.90f, 3.0f, 3, 2024, 12, 24));
-    foodStorage.addIngredient(new Ingredient("Eggs", "Eggs", 14.90f, 6.0f, 4, 2024, 12, 31));
-
-    int availableRecipes = cookBook.showAvailableRecipes(foodStorage);
-    assertEquals(1, availableRecipes);
-    }
-
-    @Test
-   void testCookRecipe(){ //TODO - test gets stuck in infinite loop
-    CookBook cookBook = new CookBook(new InputHandler(new Scanner(System.in)));
-    FoodStorage foodStorage = new FoodStorage(new MealPlannerApp());
-
-    HashMap<String, Float> ingredients = new HashMap<>();
-    ingredients.put("rice", 2.0f);
-    ingredients.put("eggs", 4.0f);
-
-    cookBook.addRecipe("Fried Rice", "Simple fried rice", ingredients, "Cook rice and eggs", 2);
-
-    foodStorage.addIngredient(new Ingredient("Rice", "Rice", 19.90f, 3.0f, 3, 2024, 12, 24));
-    foodStorage.addIngredient(new Ingredient("Eggs", "Eggs", 14.90f, 6.0f, 4, 2024, 12, 31));
-
-    int availableRecipes = cookBook.showAvailableRecipes(foodStorage);
-    assertEquals(1, availableRecipes);
-
-    Recipe recipe = cookBook.searchRecipe("Fried Rice");
-    assertNotNull(recipe);
-    assertTrue(cookBook.cookRecipe(recipe.getRecipeName(), foodStorage));
-  }*/
-
 }
