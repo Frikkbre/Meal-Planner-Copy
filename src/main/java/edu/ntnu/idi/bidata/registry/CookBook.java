@@ -150,7 +150,7 @@ public class CookBook {
    *
    * @param recipeName  the name of the recipe to be cooked
    * @param foodStorage the food storage to remove the ingredients from
-   * @return
+   * @return true if the recipe was cooked successfully, false otherwise
    */
   public boolean cookRecipe(String recipeName, FoodStorage foodStorage) {
     for (Recipe recipe : recipeRegister.values()) {
