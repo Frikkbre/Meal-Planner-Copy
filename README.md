@@ -1,5 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/RyiBKJgD)
-# Portfolio project IDATA1003
+# Portfolio project IDATG1003
 
 [//]: # (TODO: Fill inn your name and student ID)
 
@@ -19,17 +19,17 @@ The user remains in controll of tjhe inventory, and can add and remove ingredien
 [//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
 
 The project is structured in the following way:
-- The main class is `main.java`
+- The main class is `Main.java`
 - The startApplication method is in `MealPlanner.java`
-- The source files are stored in the `src/java/edu/ntnu/idi/bidata/` directory
+- The source files are stored in the `src/main/java/edu/ntnu/idi/bidata/` directory
 - From here they are stored in different packages
   - `Main.java` is in `bidata/`
   - `entity` contains the classes `Recipe.java` and `Ingredient.java`
-  - `registr` contains the classes `CookBook.java` and `FoodStorage.java`
+  - `register` contains the classes `CookBook.java` and `FoodStorage.java`
   - `userinterface` contains the class `MealPlannerApp.java`
   - `util` contains the classes `InputHandler.java` and `PrintHandler.java`
 
-- The JUnit-test classes are stored in the `src/java/edu/ntnu/idi/bidata/` directory
+- The JUnit-test classes are stored in the `src/test/java/edu/ntnu/idi/bidata/` directory
 
 
 ## Link to report repository
