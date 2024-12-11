@@ -3,15 +3,12 @@ package edu.ntnu.idi.bidata.util;
 import edu.ntnu.idi.bidata.entity.Ingredient;
 import edu.ntnu.idi.bidata.entity.Recipe;
 
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-
 public class PrintHandler {
 
   /**
    * Prints the string passed in
    * Used for general string printing
-   * @param inputString
+   * @param inputString the string to be printed
    */
   public static void printString(String inputString){
     System.out.println(inputString);
@@ -60,13 +57,13 @@ public class PrintHandler {
     System.out.println("2 = remove recipe");
     System.out.println("3 = search recipe");
     System.out.println("4 = Show recipes");
-    System.out.println("5 = Show avalible recipes");
+    System.out.println("5 = Show available recipes");
   }
 
 
   /**
    * prints ingredient passed in, used to print one or more ingredients.
-   * @param ingredient
+   * @param ingredient the ingredient to be printed
    */
   public static void printIngredient(Ingredient ingredient) {
     //System.out.println("All ingredients:");
@@ -78,20 +75,11 @@ public class PrintHandler {
     System.out.println("Is Expired: " + ingredient.getIngredientIsExpired());
     System.out.println("-------------------");
     System.out.println();
-
-
-    /*try { //TODO - Write AI declaration
-      TimeUnit.SECONDS.sleep(5);
-    } catch (InterruptedException e) {
-      System.out.println("Sleep failed: " + e.getMessage());
-      Thread.currentThread().interrupt(); // Reset the interrupt flag
-    }*/
-
   }
 
   /**
    * prints ingredient passed in, with a message that the ingredient was found
-   * @param ingredientIterated
+   * @param ingredientIterated the ingredient to be printed
    */
   public static void searchIngredientPrint(Ingredient ingredientIterated) {
     System.out.println("Ingredient found:");
@@ -104,7 +92,7 @@ public class PrintHandler {
 
   /**
    * prints recipe passed in, used to print one or more recipes.
-   * @param recipe
+   * @param recipe the recipe to be printed
    */
   public static void printRecipe(Recipe recipe) {
     System.out.println("Name: " + recipe.getRecipeName());
