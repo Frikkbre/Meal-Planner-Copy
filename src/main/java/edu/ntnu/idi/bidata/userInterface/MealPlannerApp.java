@@ -1,7 +1,6 @@
 package edu.ntnu.idi.bidata.userInterface;
 
 import edu.ntnu.idi.bidata.entity.Ingredient;
-import edu.ntnu.idi.bidata.entity.Recipe;
 import edu.ntnu.idi.bidata.registry.CookBook;
 import edu.ntnu.idi.bidata.registry.FoodStorage;
 import edu.ntnu.idi.bidata.util.InputHandler;
@@ -11,6 +10,18 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Scanner;
 
+
+/**
+ * The {@code MealPlannerApp} class is responsible for running the meal planner application.
+ * It provides methods to initialize the application and start the application.
+ * <p>
+ * This class interacts with {@link FoodStorage} and {@link CookBook} for managing ingredients and recipes.
+ * </p>
+ *
+ * @author Frikk Brændsrød
+ * @version 1.0
+ * @since 02.11.2024
+ */
 public class MealPlannerApp {
 
   private Scanner inputScanner;
