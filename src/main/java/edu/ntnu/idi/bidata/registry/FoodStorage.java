@@ -80,7 +80,7 @@ public class FoodStorage {
      * @param ingredientName the {@link Ingredient} to be removed from the storage
      * @param amountToRemove the amount of the ingredient to remove
      */
-    public void removeIngredient(String ingredientName, int amountToRemove) {
+    public void removeIngredient(String ingredientName, float amountToRemove) {
         String lowerCaseIngredientName = ingredientName.toLowerCase();
 
         if (foodRegister.containsKey(lowerCaseIngredientName)) {

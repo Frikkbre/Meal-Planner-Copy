@@ -101,7 +101,7 @@ public class MealPlannerApp {
                 String ingredientName = InputHandler.stringInput();
 
                 PrintHandler.printString("How much/many do you want to remove?");
-                int amountToRemove = InputHandler.intInput();
+                float amountToRemove = InputHandler.floatInput();
 
                 foodStorage.removeIngredient(ingredientName, amountToRemove);
               } catch (IllegalArgumentException e) {
