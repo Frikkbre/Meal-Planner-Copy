@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class FoodStorage {
 
-    private HashMap<String, Ingredient> foodRegister = new HashMap<>();
+    private final HashMap<String, Ingredient> foodRegister = new HashMap<>();
 
     static Map<String, Integer> sortedMap = new HashMap<>();
 
