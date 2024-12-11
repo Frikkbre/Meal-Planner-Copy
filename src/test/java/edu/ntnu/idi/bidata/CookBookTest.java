@@ -1,14 +1,8 @@
 package edu.ntnu.idi.bidata;
-import edu.ntnu.idi.bidata.entity.Ingredient;
 import edu.ntnu.idi.bidata.entity.Recipe;
 import edu.ntnu.idi.bidata.registry.CookBook;
-
-import edu.ntnu.idi.bidata.registry.FoodStorage;
-import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 import edu.ntnu.idi.bidata.util.InputHandler;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Scanner;
 
