@@ -42,7 +42,7 @@ public class InputHandler {
    * Method for handling float input.
    * @return Float
    */
-  public static Float floatInput() {
+  public static float floatInput() {
     String input = inputScanner.nextLine();
     if (input.matches(".*[a-zA-Z].*")) {
       throw new IllegalArgumentException("Input contains letters");
