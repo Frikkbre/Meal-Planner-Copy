@@ -84,4 +84,10 @@ public class CookBookTest {
     cookBook.addRecipe(recipeName2, recipeDescription2, recipeIngredients2, recipeInstructions2, intendedForAmountOfPeople2);
     assertEquals(1, cookBook.showAllRecipes());
   }
+
+  @Test
+  void testShowAllRecipesEmpty(){
+    CookBook cookBook = new CookBook(new InputHandler(new Scanner(System.in)));
+    assertEquals(0, cookBook.showAllRecipes());
+  }
 }
