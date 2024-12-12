@@ -6,6 +6,8 @@ import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.Assert.assertTrue;
 
 public class FoodStorageTest {
@@ -58,6 +60,23 @@ public class FoodStorageTest {
 
     boolean result = foodStorage.hasIngredient("milk", 0.5f); // Check for remaining amount
 
+    assertTrue(result);
+  }
+
+  @Test
+  void addInitIngredientTest() {
+    foodStorage.addInitIngredient();
+    boolean result = foodStorage.hasIngredient("rice", 2.0f);
+    assertTrue(result);
+  }
+
+  @Test
+  void showExpiredIngredientsTest() {
+    Ingredient ingredient = new Ingredient("milk", "dairy", 20.0f, 2.0f, 3, 2020, 12, 30);
+    LocalDate date = LocalDate.of(2021, 12, 31);
+    foodStorage.addIngredient(ingredient);
+    foodStorage.showExpiredIngredients(date);
+    boolean result = foodStorage.hasIngredient("milk", 2.0f);
     assertTrue(result);
   }
 }
