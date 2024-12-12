@@ -6,6 +6,10 @@ import edu.ntnu.idi.bidata.userInterface.MealPlannerApp;
 /**
  * The main starting point of your application. Let this class create the
  * instance of your main-class that starts your application.
+ *
+ * @version 1.0
+ * @since 12.12.2024
+ * @author Frikk Brændsrød
  */
 public class Main {
 
